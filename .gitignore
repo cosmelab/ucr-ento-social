@@ -1,0 +1,43 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.backup
+*.bak
+*.old
+*~
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Environment variables (for Google Forms integration)
+.env
+.env.local
+config.js
+
+# Local development notes
+notes.txt
+TODO.txt
+local-notes/
+
+# Test files
+test-*.html
+*-test.html
+*.draft.html
