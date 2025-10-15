@@ -29,6 +29,19 @@
       gtag('js', new Date());
       gtag('config', 'G-N8K9ZFHT9P');
     </script>
+
+    <style>
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body class="theme-custom-blue">
     <!-- Floating Progress Circle -->
@@ -521,7 +534,10 @@
                 <div id="successPage" style="display: none;">
                     <div style="max-width: 700px; margin: 4rem auto; text-align: center;">
                         <div class="phase-card" style="padding: 3rem 2rem; box-shadow: 0 0 40px rgba(74, 144, 226, 0.5); border: 2px solid var(--primary);">
-                            <div style="font-size: 4rem; margin-bottom: 1.5rem;">🦟</div>
+                            <!-- Logo -->
+                            <div style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                                <img src="assets/images/icons/logo.png" alt="Social Committee Logo" style="width: 150px; height: auto; filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.5)); animation: fadeInScale 0.8s ease-out;">
+                            </div>
                             <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 2rem;">Thank You!</h2>
                             <p style="font-size: 1.2rem; margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-card);">
                                 Your responses have been successfully submitted.
