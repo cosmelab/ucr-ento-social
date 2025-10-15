@@ -228,7 +228,6 @@ This project is proprietary software. Redistribution is not permitted without ex
 ## Contact
 
 **Website Issues**: Open an [issue](https://github.com/cosmelab/ucr-ento-social/issues)
-**Committee Contact**: [lcosme@ucr.edu](mailto:lcosme@ucr.edu)
 **Department**: [entomology.ucr.edu](https://entomology.ucr.edu/)
 
 ---
