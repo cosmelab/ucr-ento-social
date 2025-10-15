@@ -190,7 +190,7 @@ a:hover {
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
     display: flex;
-    justify-content: flex-start; /* Align to left */
+    justify-content: center; /* Center everything */
     align-items: center;
     gap: var(--spacing-xl); /* Space between brand and menu */
 }
