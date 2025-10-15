@@ -23,16 +23,16 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Poll #1 (Coffee Hour) - Blue gradient with blue glow */
+/* Poll #1 (Coffee Hour) - Purple gradient with purple glow */
 .poll-card:nth-child(1):hover .poll-number {
-    background: linear-gradient(135deg, #003DA5, #6BA3F5);
+    background: linear-gradient(135deg, #8B5CF6, #A78BFA);
     color: white;
-    box-shadow: 0 0 20px rgba(0, 61, 165, 0.6),
-                0 0 30px rgba(0, 61, 165, 0.4),
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6),
+                0 0 30px rgba(139, 92, 246, 0.4),
                 0 6px 8px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
-    border-color: rgba(0, 61, 165, 0.8);
+    border-color: rgba(139, 92, 246, 0.8);
 }
 
 /* Poll #2 (Events) - Gold/Orange gradient with gold glow */
@@ -81,4 +81,65 @@
 .poll-number {
     position: relative;
     overflow: hidden;
+}
+
+/* ====================================
+   POLL BUTTON HOVER EFFECTS
+   ==================================== */
+
+/* Poll #1 (Coffee Hour) - PURPLE BUTTON HOVER */
+.polls-grid .poll-card:nth-child(1) a.poll-button:hover,
+.polls-grid .poll-card:nth-child(1) a.action-button:hover,
+.polls-grid .poll-card:nth-child(1) .poll-action a:hover {
+    background: linear-gradient(135deg, #8B5CF6, #A78BFA) !important;
+    color: var(--text-primary) !important;
+    border-color: #8B5CF6 !important;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6) !important,
+                0 6px 12px rgba(0, 0, 0, 0.4) !important,
+                inset 0 1px 0 rgba(167, 139, 250, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+.polls-grid .poll-card:nth-child(1) a.poll-button::after,
+.polls-grid .poll-card:nth-child(1) a.action-button::after,
+.polls-grid .poll-card:nth-child(1) .poll-action a::after {
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent) !important;
+}
+
+/* Poll #2 (Events) - GOLD BUTTON HOVER */
+.polls-grid .poll-card:nth-child(2) a.poll-button:hover,
+.polls-grid .poll-card:nth-child(2) a.action-button:hover,
+.polls-grid .poll-card:nth-child(2) .poll-action a:hover {
+    background: linear-gradient(135deg, #FFC947, #F4D03F) !important;
+    color: #1a1a1a !important;
+    border-color: #FFC947 !important;
+    box-shadow: 0 0 30px rgba(255, 201, 71, 0.6) !important,
+                0 6px 12px rgba(0, 0, 0, 0.4) !important,
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.polls-grid .poll-card:nth-child(2) a.poll-button::after,
+.polls-grid .poll-card:nth-child(2) a.action-button::after,
+.polls-grid .poll-card:nth-child(2) .poll-action a::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 201, 71, 0.3), transparent) !important;
+}
+
+/* Poll #3 (3D Merch) - GREEN/CYAN BUTTON HOVER */
+.polls-grid .poll-card:nth-child(3) a.poll-button:hover,
+.polls-grid .poll-card:nth-child(3) a.action-button:hover,
+.polls-grid .poll-card:nth-child(3) .poll-action a:hover {
+    background: linear-gradient(135deg, #50fa7b, #8be9fd) !important;
+    color: #1a1a1a !important;
+    border-color: #50fa7b !important;
+    box-shadow: 0 0 30px rgba(80, 250, 123, 0.6) !important,
+                0 6px 12px rgba(0, 0, 0, 0.4) !important,
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.polls-grid .poll-card:nth-child(3) a.poll-button::after,
+.polls-grid .poll-card:nth-child(3) a.action-button::after,
+.polls-grid .poll-card:nth-child(3) .poll-action a::after {
+    background: linear-gradient(90deg, transparent, rgba(80, 250, 123, 0.3), transparent) !important;
 }

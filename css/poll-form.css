@@ -227,9 +227,15 @@
 
     /* Smaller checkboxes on mobile */
     .checkbox-item input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        margin: 0.1rem 0 0 0;
+        width: 14px;
+        height: 14px;
+        margin: 0.2rem 0 0 0;
+    }
+
+    /* Better label alignment on mobile */
+    .checkbox-item label {
+        padding-top: 0.1rem;
+        font-size: 0.95rem;
     }
 
     .form-section {

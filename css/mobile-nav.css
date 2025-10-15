@@ -222,6 +222,39 @@
         transform: none !important;
     }
 
+    /* FORCE FOOTER LOGOS TO STACK VERTICALLY ON MOBILE - NUCLEAR OPTION */
+    .footer-logos {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        gap: 1rem !important;
+        margin-top: 1.5rem !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .footer-logos .logo-link {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .footer-logos .logo-link:first-child {
+        order: 1 !important;
+    }
+
+    .footer-logos .logo-link:last-child {
+        order: 2 !important;
+    }
+
+    .footer-logos img {
+        height: 40px !important;
+        width: auto !important;
+        display: inline-block !important;
+        margin: 0 auto !important;
+    }
+
     /* Fix gallery indicators position on mobile */
     .gallery-indicators {
         position: absolute !important;
