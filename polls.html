@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polls - UCR Entomology Social Committee</title>
+    <meta name="description" content="Share your input to help shape social events in the UCR Entomology Department">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
+    <link rel="stylesheet" href="css/poll-badges.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9ZFHT9P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N8K9ZFHT9P');
+    </script>
+</head>
+<body class="theme-custom-blue">
+    <!-- Header/Hero Section -->
+    <header class="hero-section polls-hero">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html">Social Committee</a>
+                    <span class="established">Established September 2025</span>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="polls.html" class="active">Polls</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Community Polls</h1>
+            <p class="hero-mission">Shape the future of our department's social events</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section polls-section" style="padding-bottom: 1rem;">
+            <div class="container">
+                <h1 class="section-title">Your Input Shapes Our Events</h1>
+                <p class="section-subtitle">
+                    Please take a moment to complete our polls. Your responses will help us plan
+                    events that work for everyone in the department.
+                </p>
+
+                <!-- Privacy & Security Notice -->
+                <div class="phase-card" style="max-width: 800px; margin: 2rem auto 3rem auto;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">🔒 Privacy & Security</h3>
+                    <p style="margin-bottom: 0.75rem;">
+                        Our polls are powered by <strong>Google Apps Script</strong> and securely store responses in Google Sheets,
+                        the same technology behind Google Forms. We've created a custom interface to match our website design
+                        while maintaining the security and reliability of Google's infrastructure.
+                    </p>
+                    <p style="margin-bottom: 0.75rem;">
+                        <strong>Access is restricted to UCR community members only.</strong> You must sign in with your UCR Google account
+                        (@ucr.edu) to submit responses. Your email is collected to prevent duplicate submissions and may be used
+                        to follow up about events you expressed interest in.
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        Your responses are confidential and will only be viewed by the Social Committee organizers.
+                        Aggregate results (without identifying information) will be shared with the department.
+                    </p>
+                </div>
+
+                <div class="polls-grid">
+                    <!-- Poll 1: Coffee Hour -->
+                    <div class="poll-card">
+                        <div class="poll-header">
+                            <span class="poll-number">1</span>
+                            <h3>Coffee Hour Planning</h3>
+                        </div>
+                        <p class="poll-description">
+                            Help us find the best times and format for regular department coffee hours
+                        </p>
+                        <div class="poll-action">
+                            <p class="time-estimate">Takes about 3-5 minutes</p>
+                            <a href="poll-coffee-hour.html" class="action-button poll-button"><span class="insect-emoji">☕</span> Take Poll</a>
+                        </div>
+                    </div>
+
+                    <!-- Poll 2: Events -->
+                    <div class="poll-card">
+                        <div class="poll-header">
+                            <span class="poll-number">2</span>
+                            <h3>Social Events & Activities</h3>
+                        </div>
+                        <p class="poll-description">
+                            Share your preferences for department social events and activities
+                        </p>
+                        <div class="poll-action">
+                            <p class="time-estimate">Takes about 5 minutes</p>
+                            <a href="poll-events.html" class="action-button poll-button"><span class="insect-emoji">🦟</span> Take Poll</a>
+                        </div>
+                    </div>
+
+                    <!-- Poll 3: 3D Print Merch -->
+                    <div class="poll-card">
+                        <div class="poll-header">
+                            <span class="poll-number">3</span>
+                            <h3>3D Print Merchandise</h3>
+                        </div>
+                        <p class="poll-description">
+                            Help us design 3D printed insect merchandise for fundraising
+                        </p>
+                        <div class="poll-action">
+                            <p class="time-estimate">Takes about 2 minutes</p>
+                            <a href="poll-3d-merch.html" class="action-button poll-button"><span class="insect-emoji">🐝</span> Take Poll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-card" style="max-width: 600px; margin: 5rem auto 4rem auto;">
+                    <h3>Results Timeline</h3>
+                    <p>
+                        We'll collect responses through <strong>October 17, 2025</strong>.<br>
+                        Results will be shared at our first event in November.<br>
+                        Thank you for helping us build a stronger community!
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-background"></div>
+        <div class="footer-content">
+            <p>&copy; 2025 UCR Entomology Social Committee</p>
+            <p>All rights reserved.</p>
+            <div class="footer-logos">
+                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
+                </a>
+                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

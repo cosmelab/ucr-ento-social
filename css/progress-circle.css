@@ -1,0 +1,176 @@
+/* Poll Progress Circle Styles */
+
+#progressCircle {
+    position: fixed;
+    right: 30px;
+    bottom: 100px;
+    width: 100px;
+    height: 100px;
+    background: var(--bg-dark);
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(74, 144, 226, 0.3);
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Logo background */
+#progressCircle::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('../assets/images/icons/logo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+#progressCircle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.6), 0 0 0 3px var(--primary);
+}
+
+#progressCircle.complete {
+    box-shadow: 0 4px 20px rgba(80, 250, 123, 0.5), 0 0 0 3px #50fa7b;
+}
+
+#progressCircle.complete:hover {
+    box-shadow: 0 6px 25px rgba(80, 250, 123, 0.7), 0 0 0 3px #50fa7b;
+}
+
+#progressPercent {
+    color: var(--primary);
+    font-size: 1.4rem;
+    font-weight: bold;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#progressCircle.complete #progressPercent {
+    color: #50fa7b;
+}
+
+#progressLabel {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    z-index: 1;
+    margin-top: 2px;
+}
+
+/* Progress Details Popup */
+#progressDetails {
+    position: fixed;
+    right: 140px;
+    bottom: 100px;
+    width: 280px;
+    background: var(--bg-surface);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    padding: 1.5rem;
+    z-index: 999;
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#progressDetails h4 {
+    color: var(--primary);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+}
+
+#sectionsList {
+    color: var(--text-card);
+    font-size: 0.85rem;
+}
+
+.section-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.section-item:last-child {
+    border-bottom: none;
+}
+
+.section-item.completed {
+    color: #50fa7b;
+}
+
+.section-item.incomplete {
+    color: var(--text-secondary);
+}
+
+#currentSectionDetail {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin: 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(74, 144, 226, 0.2);
+    margin-top: 1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    #progressCircle {
+        right: 15px;
+        bottom: 80px;
+        width: 70px;
+        height: 70px;
+    }
+
+    #progressCircle::before {
+        width: 40px;
+        height: 40px;
+    }
+
+    #progressPercent {
+        font-size: 1rem;
+    }
+
+    #progressLabel {
+        font-size: 0.6rem;
+    }
+
+    #progressDetails {
+        right: 95px;
+        bottom: 80px;
+        width: 220px;
+        padding: 1rem;
+    }
+
+    #progressDetails h4 {
+        font-size: 0.9rem;
+    }
+
+    #sectionsList {
+        font-size: 0.75rem;
+    }
+}
+
+/* Scrollbar for progress details */
+#progressDetails::-webkit-scrollbar {
+    width: 6px;
+}
+
+#progressDetails::-webkit-scrollbar-track {
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 3px;
+}
+
+#progressDetails::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+#progressDetails::-webkit-scrollbar-thumb:hover {
+    background: #6BA3F5;
+}

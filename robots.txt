@@ -1,0 +1,7 @@
+# Robots.txt for UCR Entomology Social Committee
+# https://cosmelab.github.io/ucr-ento-social/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://cosmelab.github.io/ucr-ento-social/sitemap.xml

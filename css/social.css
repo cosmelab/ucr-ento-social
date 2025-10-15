@@ -1,0 +1,1195 @@
+/* ====================================
+   UCR Entomology Social Committee
+   Main Stylesheet - Dark Theme
+   ==================================== */
+
+/* CSS Variables - Base Theme Structure */
+:root {
+    /* Default Theme: UCR Refined */
+    --primary: #003DA5;        /* Main brand color (blue) */
+    --accent: #FFC947;          /* Accent color (gold) */
+    --accent-muted: #F4D03F;    /* Softer accent */
+    --primary-light: #0056D6;   /* Lighter primary for hover */
+
+    /* Dark Theme Colors */
+    --bg-dark: #1a1a1a;
+    --bg-surface: #1f1f1f; /* Darker cards */
+    --bg-surface-hover: #2a2a2a;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --text-card: #e8e8e8; /* Softer than pure white for cards */
+    --text-warm: #f5f5f0; /* Warm off-white option */
+
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+/* ====================================
+   Reset & Base Styles
+   ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-card); /* Use pale turquoise for all body text */
+    line-height: 1.6;
+    position: relative;
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
+}
+
+body::before {
+    content: '';
+    position: absolute; /* Absolute to body */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%; /* Exactly body height */
+    background-image: url('../assets/images/backgrounds/body_bg.png');
+    background-repeat: repeat;
+    opacity: 0.15; /* More visible */
+    z-index: -10; /* Way behind everything */
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+    color: var(--primary); /* Make all headers use primary color */
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--text-primary);
+}
+
+/* ====================================
+   Hero Section
+   ==================================== */
+.hero-section {
+    position: relative;
+    min-height: 250px; /* Match footer height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--bg-dark); /* Solid background to prevent overlap */
+    isolation: isolate; /* Create stacking context */
+    padding: var(--spacing-xl) 0;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/headers/header_bg.png');
+    background-size: 100% auto; /* Full width, height auto */
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.15; /* Darker/more faded */
+    z-index: -1;
+}
+
+/* Specific header backgrounds for each page */
+.hero-section.contact-hero .hero-background {
+    background-image: url('../assets/images/headers/contact_header_bg.png');
+}
+
+.hero-section.feedback-hero .hero-background {
+    background-image: url('../assets/images/headers/feedback_header_bg.png');
+}
+
+.hero-section.polls-hero .hero-background {
+    background-image: url('../assets/images/headers/polls_header_bg.png');
+}
+
+/* Dark overlay removed - not needed */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--spacing-xl);
+    max-width: 800px;
+}
+
+.hero-title {
+    color: var(--primary); /* Use primary color like other headers */
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-mission {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-card); /* Use pale turquoise */
+}
+
+.hero-tagline {
+    font-size: 1.25rem;
+    color: var(--text-card); /* Use pale turquoise for consistency */
+}
+
+/* ====================================
+   Navigation Bar
+   ==================================== */
+.navbar {
+    background-color: transparent; /* Remove background */
+    position: absolute; /* Overlay on hero */
+    top: 20px; /* Position from top */
+    left: 0;
+    right: 0;
+    z-index: 100; /* Above hero background */
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    justify-content: flex-start; /* Align to left */
+    align-items: center;
+    gap: var(--spacing-xl); /* Space between brand and menu */
+}
+
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.nav-brand a {
+    color: var(--accent); /* Golden like lab website */
+    font-size: 1.6rem; /* Bigger logo text */
+    font-weight: 700;
+    padding: 0.2rem 0; /* Less vertical padding */
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* Subtle golden glow */
+}
+
+.nav-brand .established {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    margin-top: -0.5rem;
+    font-style: italic;
+    font-weight: 400;
+    opacity: 0.9;
+    align-self: flex-end;
+    padding-right: 0.2rem;
+}
+
+.nav-brand a:hover {
+    color: var(--accent); /* Stay golden */
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* Stronger glow on hover */
+}
+
+.nav-menu {
+    list-style: none !important;
+    display: flex;
+    gap: var(--spacing-md); /* More space between buttons */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0;
+    list-style: none !important;
+}
+
+.nav-menu li::before {
+    display: none !important; /* Remove any list markers */
+}
+
+.nav-menu a {
+    /* Style like lab website buttons */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-surface), #252525);
+    padding: 0.4rem 0.9rem;
+    color: var(--primary); /* Blue text */
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    height: 32px;
+}
+
+/* Add sweep animation like action buttons */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
+    transition: left 0.6s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.nav-menu a:hover::after {
+    left: 100%;
+}
+
+.nav-menu a:hover {
+    background: linear-gradient(135deg, var(--primary), #6BA3F5); /* Blue gradient */
+    color: var(--text-primary); /* White text on blue */
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.6), /* Strong blue glow */
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(107, 163, 245, 0.4);
+    transform: translateY(-2px);
+}
+
+.nav-menu a.active {
+    background: linear-gradient(135deg, var(--primary), #4A90E2); /* Blue gradient for active */
+    color: var(--text-primary); /* White text */
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Hamburger Menu */
+.mobile-menu-toggle {
+    display: none;
+    background: linear-gradient(135deg, var(--bg-surface), #252525);
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-toggle:hover {
+    background: linear-gradient(135deg, var(--primary), #6BA3F5);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+}
+
+.mobile-menu-toggle .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 24px;
+}
+
+.mobile-menu-toggle .hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover .hamburger span {
+    background: white;
+}
+
+.mobile-menu-toggle.active .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.active .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ====================================
+   Main Content & Sections
+   ==================================== */
+.main-content {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    /* Remove fixed min-height to allow content to determine height */
+}
+
+.section {
+    padding: var(--spacing-lg) 0;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--primary); /* Use primary color for section titles */
+    margin-bottom: var(--spacing-md);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-card); /* Use pale turquoise */
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ====================================
+   Welcome Card
+   ==================================== */
+.welcome-card {
+    background-color: var(--bg-surface);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: var(--transition);
+}
+
+.welcome-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.4); /* Blue glow */
+    border-color: var(--primary); /* Blue border on hover */
+}
+
+.welcome-card h2 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.welcome-card p {
+    color: var(--text-card);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.welcome-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* ====================================
+   About Section
+   ==================================== */
+.about-content {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.phases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.phase-card {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(74, 144, 226, 0.2); /* Subtle blue border */
+    transition: var(--transition);
+    color: var(--text-card); /* Softer text color for cards */
+    text-align: center; /* Center all text in phase cards */
+}
+
+.phase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.4); /* Blue glow */
+    border-color: var(--primary); /* Blue border on hover */
+}
+
+.phase-card h3 {
+    color: var(--primary); /* Use primary color for headers */
+    margin-bottom: var(--spacing-md);
+}
+
+.phase-card p {
+    color: var(--text-card); /* Ensure paragraphs use softer color */
+}
+
+/* ====================================
+   Polls Section
+   ==================================== */
+.polls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.poll-card {
+    background-color: var(--bg-surface);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    color: var(--text-card);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.poll-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.4);
+    border-color: var(--primary);
+}
+
+.poll-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Poll number badge styling moved to poll-badges.css for color variations */
+
+.poll-header h3 {
+    color: var(--primary);
+    margin: 0;
+    flex: 1;
+}
+
+.poll-description {
+    color: var(--text-card);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.poll-action {
+    text-align: center;
+    margin-top: auto;
+}
+
+.time-estimate {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.poll-button {
+    /* Inherits from action-button but narrower */
+    background: linear-gradient(135deg, var(--bg-surface), #252525);
+    padding: 0.5rem 1rem;
+    color: var(--primary);
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    min-width: 140px;
+    max-width: 160px;
+    margin: 0 auto;
+    height: 36px;
+}
+
+.poll-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
+    transition: left 0.6s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.poll-button:hover::after {
+    left: 100%;
+}
+
+.poll-button:hover {
+    background: linear-gradient(135deg, var(--primary), #6BA3F5);
+    color: var(--text-primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.6),
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(107, 163, 245, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ====================================
+   Feedback Section
+   ==================================== */
+.feedback-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feedback-form {
+    background-color: var(--bg-surface);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(74, 144, 226, 0.2); /* Blue border like other cards */
+    transition: var(--transition);
+}
+
+.feedback-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.4); /* Blue glow */
+    border-color: var(--primary);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary); /* Blue like headers */
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--bg-dark);
+    color: var(--text-card); /* Consistent text color */
+    border: 1px solid rgba(74, 144, 226, 0.2); /* Blue border */
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.3); /* Blue glow on focus */
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--bg-surface), #252525);
+    padding: 0.5rem 1rem;
+    color: var(--primary); /* Blue text */
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    height: 36px; /* Smaller height */
+    min-width: 140px;
+}
+
+.btn-primary {
+    /* Inherits from .btn */
+}
+
+.btn:hover,
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary), #6BA3F5);
+    color: var(--text-primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.6),
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(107, 163, 245, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Action Buttons - Like Lab Website */
+.action-button {
+    background: linear-gradient(135deg, var(--bg-surface), #252525);
+    padding: 0.5rem 1rem;
+    color: var(--primary); /* Blue text like lab website */
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    margin: 0.4rem;
+    height: 36px; /* Smaller height */
+}
+
+.action-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
+    transition: left 0.6s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.action-button:hover::after {
+    left: 100%;
+}
+
+.action-button:hover {
+    background: linear-gradient(135deg, var(--primary), #6BA3F5); /* Blue gradient like purple on lab site */
+    color: var(--text-primary); /* White/light text on blue */
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.6), /* Stronger blue glow */
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(107, 163, 245, 0.4);
+    transform: translateY(-2px);
+}
+
+.action-button:active {
+    transform: scale(0.98);
+}
+
+/* Pulse animation removed to avoid floating elements */
+
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-xl) 0;
+}
+
+/* ====================================
+   Contact Section
+   ==================================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.member-card {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    color: var(--text-card); /* Softer text color */
+    transition: var(--transition);
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.4); /* Blue glow */
+    border-color: var(--primary); /* Blue border on hover */
+}
+
+.member-card h4 {
+    color: var(--primary); /* Use primary color for headers */
+    margin-bottom: var(--spacing-sm);
+}
+
+.member-card p {
+    color: var(--text-card); /* Softer text for paragraphs */
+}
+
+.contact-info {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ====================================
+   Footer
+   ==================================== */
+.main-footer {
+    position: relative;
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl) 0;
+    min-height: 250px; /* Reasonable height for footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--bg-dark); /* Solid background */
+    overflow: hidden;
+    z-index: 10; /* Above body background */
+}
+
+.footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/headers/foot_bg.png');
+    background-size: cover; /* Cover area while maintaining aspect ratio */
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.3; /* Match header opacity */
+    z-index: 1; /* Behind footer content only */
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+    color: var(--text-card); /* Use light blue like other text */
+    text-shadow: 0 0 25px rgba(74, 144, 226, 0.8), /* Stronger blue glow */
+                 0 0 50px rgba(74, 144, 226, 0.5), /* Outer glow */
+                 0 0 75px rgba(74, 144, 226, 0.3); /* Extended glow */
+}
+
+.footer-logos {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logos .logo-link {
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.footer-logos .logo-link:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.footer-logos img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0.9);
+}
+
+/* ====================================
+   Responsive Design
+   ==================================== */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+
+    .navbar {
+        background-color: rgba(26, 26, 26, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999999 !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--spacing-lg);
+        z-index: 999999 !important;
+    }
+
+    .nav-brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        align-items: center;
+        z-index: 999999 !important;
+    }
+
+    .nav-brand a,
+    .nav-brand .established {
+        position: relative;
+        z-index: 999999 !important;
+    }
+
+    .nav-brand .established {
+        align-self: center;
+        padding-right: 0;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        right: 0;
+        z-index: 999999 !important;
+    }
+
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        right: 1rem;
+        flex-direction: column;
+        background: rgba(31, 31, 31, 0.95);
+        backdrop-filter: blur(10px);
+        border: none;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+        min-width: 200px;
+        z-index: 999998 !important;
+        gap: 0.5rem;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        margin: 0;
+    }
+
+    .nav-menu a {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        height: 44px;
+        padding: 0.6rem 1rem;
+    }
+
+    .polls-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-section {
+        overflow: visible;
+        padding-top: 80px;
+        z-index: 1 !important;
+    }
+
+    .hero-content {
+        padding: var(--spacing-lg);
+        z-index: 1 !important;
+    }
+
+    .main-content {
+        z-index: 1 !important;
+    }
+
+    .section {
+        z-index: 1 !important;
+    }
+
+    .phase-card,
+    .poll-card,
+    .welcome-card,
+    .member-card,
+    .feedback-form {
+        z-index: 1 !important;
+    }
+
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .phases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ====================================
+   Gallery Slideshow
+   ==================================== */
+.hero-gallery {
+    position: relative;
+    height: 400px; /* Taller for gallery */
+    overflow: hidden;
+}
+
+.hero-gallery-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-gallery-slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    animation: kenBurns 20s ease-out infinite;
+}
+
+.hero-gallery-slideshow .slide.active {
+    opacity: 1;
+}
+
+/* Ken Burns effect - subtle zoom and pan */
+@keyframes kenBurns {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.1) translate(-2%, -2%);
+    }
+}
+
+/* Overlay for text readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: 2;
+}
+
+/* Gallery indicators */
+.gallery-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.gallery-indicators .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-indicators .indicator.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.gallery-indicators .indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Adjust hero content for gallery */
+.hero-gallery .hero-content {
+    z-index: 3; /* Above overlay */
+}
+
+/* ====================================
+   Animations
+   ==================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rotation animation for button icons */
+@keyframes rotateIcon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Style for insect emoji spans in buttons */
+.insect-emoji {
+    display: inline-block;
+    font-size: 1em;
+    margin-right: 0.3rem;
+    filter: sepia(1) saturate(5) hue-rotate(180deg) brightness(0.7); /* Makes emojis blue */
+    transition: transform 0.5s ease, filter 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Rotate emoji on button hover */
+.action-button:hover .insect-emoji,
+.btn:hover .insect-emoji,
+.poll-button:hover .insect-emoji {
+    transform: rotate(360deg);
+}
+
+/* When button is hovered, emoji becomes white */
+.action-button:hover .insect-emoji,
+.btn:hover .insect-emoji,
+.poll-button:hover .insect-emoji {
+    filter: brightness(1) grayscale(1) invert(1); /* Makes emojis white on hover */
+}
+
+.section {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* KILL ANY FLOATING ELEMENTS */
+body::after,
+footer::after,
+.main-footer::after,
+.footer-content::after,
+.footer-background::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Ensure footer is last element */
+html {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto; /* Take up remaining space */
+}
+
+.main-footer {
+    margin-top: auto !important; /* Push to bottom */
+    margin-bottom: 0 !important;
+    flex-shrink: 0; /* Don't shrink */
+}
+
+/* Remove any stray list items */
+li::marker,
+ul::marker {
+    display: none !important;
+    content: none !important;
+}

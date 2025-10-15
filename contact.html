@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - UCR Entomology Social Committee</title>
+    <meta name="description" content="Get in touch with the UCR Entomology Social Committee members">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9ZFHT9P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N8K9ZFHT9P');
+    </script>
+</head>
+<body class="theme-custom-blue">
+    <!-- Header/Hero Section -->
+    <header class="hero-section contact-hero">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html">Social Committee</a>
+                    <span class="established">Established September 2025</span>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Contact Us</h1>
+            <p class="hero-mission">Bug us with your ideas, suggestions, and collaboration proposals</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section contact-section">
+            <div class="container">
+                <h1 class="section-title">Get Connected</h1>
+                <p class="section-subtitle">
+                    Have questions? Want to collaborate? We'd love to hear from you!
+                </p>
+
+                <div class="feedback-form-container" style="max-width: 600px; margin: 3rem auto;">
+                    <!-- Success/Error Messages -->
+                    <div id="successMessage" class="message success" style="display: none; margin-bottom: 2rem;">
+                        Thank you for your message! We'll get back to you soon.
+                    </div>
+                    <div id="errorMessage" class="message error" style="display: none; margin-bottom: 2rem;">
+                        There was an error sending your message. Please try again.
+                    </div>
+
+                    <div id="contactFormContainer">
+                        <form class="feedback-form" id="contactForm" action="https://script.google.com/a/macros/ucr.edu/s/AKfycby5V5-qgK9X1tJWF1aiMuBGDXsndt0IPgd44_dC-FlBjxTaltlqCeKPDVIheNA_Ncrr/exec" method="POST">
+                            <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Send us a Message</h3>
+
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" name="name" placeholder="Your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" placeholder="your.email@ucr.edu" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-subject">Subject</label>
+                                <select id="contact-subject" name="subject" required>
+                                    <option value="">Select...</option>
+                                    <option value="General Question">General Question</option>
+                                    <option value="Collaboration Proposal">Collaboration Proposal</option>
+                                    <option value="Event Suggestion">Event Suggestion</option>
+                                    <option value="Meeting Information">Meeting Information</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message">Message</label>
+                                <textarea id="contact-message" name="message" rows="5"
+                                          placeholder="Your message..."
+                                          required></textarea>
+                            </div>
+
+                            <div style="text-align: center;">
+                                <button type="submit" class="btn btn-primary" id="contactSubmitBtn"><span class="insect-emoji">🦗</span> Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-background"></div>
+        <div class="footer-content">
+            <p>&copy; 2025 UCR Entomology Social Committee</p>
+            <p>All rights reserved.</p>
+            <div class="footer-logos">
+                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
+                </a>
+                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show loading state
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span style="display: inline-block; animation: spin 1s linear infinite;">⟳</span> Sending...';
+            submitBtn.disabled = true;
+
+            // Add rotation animation if not present
+            if (!document.getElementById('spinAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'spinAnimation';
+                style.textContent = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+                document.head.appendChild(style);
+            }
+
+            // Collect form data
+            const formData = new FormData(this);
+
+            // Submit to Google Apps Script
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            })
+            .then(() => {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactFormContainer').style.display = 'none';
+                window.scrollTo(0, 0);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    document.getElementById('errorMessage').style.display = 'none';
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>

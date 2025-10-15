@@ -1,0 +1,62 @@
+/* ====================================
+   Theme Switching System
+   Add class to <body> tag to switch themes
+   Example: <body class="theme-academia">
+   ==================================== */
+
+/* Default Theme: UCR Refined (no class needed) */
+:root {
+    --primary: #003DA5;        /* UCR Blue */
+    --accent: #FFC947;         /* Softer Gold */
+    --accent-muted: #F4D03F;   /* Even softer gold */
+    --primary-light: #0056D6;  /* Lighter blue */
+}
+
+/* Theme 1: Dark Academia */
+body.theme-academia {
+    --primary: #1B2951;        /* Deep Navy */
+    --accent: #F5F5DC;         /* Warm Cream */
+    --accent-muted: #D4AF37;   /* Muted Gold */
+    --primary-light: #2C3E5F;  /* Lighter navy */
+}
+
+/* Theme 2: Nature/Entomology */
+body.theme-nature {
+    --primary: #2D5016;        /* Forest Green */
+    --accent: #FFC000;         /* Amber */
+    --accent-muted: #FFD700;   /* Gold */
+    --primary-light: #3E6B22;  /* Lighter green */
+}
+
+/* Theme 3: Custom Blue-Turquoise */
+body.theme-custom-blue {
+    --primary: #4A90E2;        /* Light Blue for headers */
+    --accent: #FFD700;         /* Yellow/Gold glow for accents */
+    --accent-muted: #FFC947;   /* Softer yellow */
+    --primary-light: #6BA3F5;  /* Even lighter blue */
+
+    /* Override text colors for turquoise */
+    --text-primary: #40E0D0;   /* Turquoise for main text */
+    --text-secondary: #48D1CC; /* Medium turquoise */
+    --text-card: #5F9EA0;      /* Cadet blue - darker, more contrast */
+    /* --text-card: #B0E0E6; */     /* OPTION 1: Powder blue - softer, more readable */
+    /* --text-card: #E0FFFF; */     /* OPTION 2: Light cyan - very light */
+    /* --text-card: #87CEEB; */     /* OPTION 3: Sky blue - more saturated */
+    /* --text-card: #ADD8E6; */     /* OPTION 4: Light blue - classic */
+}
+
+/* Theme 4: Cool Professional */
+body.theme-professional {
+    --primary: #4B5563;        /* Slate Blue */
+    --accent: #14B8A6;         /* Teal */
+    --accent-muted: #FAFAF9;   /* Warm White */
+    --primary-light: #6B7280;  /* Light Gray */
+}
+
+/* Theme 5: Earth Tones */
+body.theme-earth {
+    --primary: #5D4037;        /* Brown */
+    --accent: #FF9800;         /* Orange */
+    --accent-muted: #FFB74D;   /* Light Orange */
+    --primary-light: #6D4C41;  /* Light Brown */
+}
