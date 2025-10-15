@@ -106,6 +106,13 @@
                         This survey takes about 5 minutes to complete.
                     </p>
 
+                    <!-- Deadline Notice -->
+                    <div class="phase-card" style="max-width: 700px; margin: 2rem auto; text-align: center;">
+                        <p style="margin: 0; font-size: 1rem; color: var(--text-card);">
+                            <strong style="color: #FFC107;">Poll closes October 17, 2025 at 11:59 PM</strong>
+                        </p>
+                    </div>
+
                     <!-- Success/Error Messages -->
                     <div id="successMessage" class="message success">
                         Thank you for completing the poll! Your responses have been submitted.
@@ -114,7 +121,7 @@
                         There was an error submitting your responses. Please try again.
                     </div>
 
-                    <form id="eventsForm" action="https://script.google.com/macros/s/AKfycbx95PTJ6G8F1apkgMDPgyy5bwuXrstRIPthiK4sY1y1YPX4mI581A3hHvVqv_LAphxFMw/exec" method="POST">
+                    <form id="eventsForm" action="https://script.google.com/macros/s/AKfycbx95PTJ6G8F1apkgMDPgyy5bwuXrstRIPthiK4sY1y1YPX4mI581A3hHvVqv_LAphxFMw/exec" method="POST" novalidate>
 
                         <!-- Email Section -->
                         <div class="form-section">
@@ -496,7 +503,7 @@
                             <h3>Additional Input</h3>
 
                             <div class="form-group">
-                                <label for="suggestions">Any other ideas or suggestions? <span class="optional-indicator">(optional)</span></label>
+                                <label for="suggestions">Any other ideas or suggestions?</label>
                                 <textarea id="suggestions" name="suggestions" rows="4" placeholder="Share your thoughts on events, activities, or how we can make the social committee better..."></textarea>
                             </div>
                         </div>
@@ -540,18 +547,11 @@
         <div class="footer-content">
             <p>&copy; 2025 UCR Entomology Social Committee</p>
             <p>All rights reserved.</p>
-            <div class="footer-logos">
-                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
-                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
-                </a>
-                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
-                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
-                </a>
-            </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
+    <script src="js/poll-deadline.js"></script>
     <script src="js/main.js"></script>
     <script src="js/poll-progress.js"></script>
     <script>
@@ -571,9 +571,153 @@
             });
         });
 
+        // Real-time validation - remove red glow and add green when fixed
+        // Email validation
+        document.getElementById('email').addEventListener('input', function() {
+            const emailGroup = this.closest('.form-group');
+            const email = this.value.trim();
+
+            if (email && email.endsWith('@ucr.edu')) {
+                emailGroup.classList.remove('error');
+                emailGroup.classList.add('valid');
+            } else if (email) {
+                emailGroup.classList.remove('valid');
+                emailGroup.classList.add('error');
+            } else {
+                emailGroup.classList.remove('error', 'valid');
+            }
+        });
+
+        // Checkbox group validation (for required multi-select and single-select)
+        function setupCheckboxValidation(fieldName, isMultiSelect) {
+            const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedBoxes = document.querySelectorAll(`input[name="${fieldName}"]:checked`);
+                    const formGroup = this.closest('.form-group');
+
+                    if (checkedBoxes.length > 0) {
+                        formGroup.classList.remove('error');
+                        formGroup.classList.add('valid');
+                    } else {
+                        formGroup.classList.remove('valid');
+                    }
+                });
+            });
+        }
+
+        // Setup validation for all required checkbox groups
+        setupCheckboxValidation('eventFrequency', false);
+        setupCheckboxValidation('eventBudget', false);
+        setupCheckboxValidation('3dprintInterest', false);
+        setupCheckboxValidation('alcoholPreference', false);
+
+        // Setup validation for OPTIONAL checkbox groups (show green when filled)
+        setupCheckboxValidation('onCampusSocial', true);
+        setupCheckboxValidation('onCampusGames', true);
+        setupCheckboxValidation('seasonalEvents', true);
+        setupCheckboxValidation('outdoorActivities', true);
+        setupCheckboxValidation('dayTrips', true);
+        setupCheckboxValidation('entertainment', true);
+        setupCheckboxValidation('availability', true);
+        setupCheckboxValidation('barriers', true);
+        setupCheckboxValidation('participation', true);
+
+        // Textarea validation (suggestions field)
+        document.getElementById('suggestions').addEventListener('input', function() {
+            const formGroup = this.closest('.form-group');
+            const value = this.value.trim();
+
+            if (value) {
+                formGroup.classList.add('valid');
+            } else {
+                formGroup.classList.remove('valid');
+            }
+        });
+
         // Form validation and submission
         document.getElementById('eventsForm').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Clear previous error states (keep valid/green states)
+            document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+            document.getElementById('errorMessage').classList.remove('show');
+
+            let hasErrors = false;
+            let firstErrorElement = null;
+            let errorMessages = [];
+
+            // Validate UCR email
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            if (!email) {
+                const emailGroup = emailInput.closest('.form-group');
+                emailGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = emailGroup;
+                errorMessages.push('Email address is required');
+                hasErrors = true;
+            } else if (!email.endsWith('@ucr.edu')) {
+                const emailGroup = emailInput.closest('.form-group');
+                emailGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = emailGroup;
+                errorMessages.push('Please use your UCR email address (@ucr.edu)');
+                hasErrors = true;
+            }
+
+            // Validate eventFrequency (single-choice required)
+            const frequencyChecked = document.querySelectorAll('input[name="eventFrequency"]:checked');
+            if (frequencyChecked.length === 0) {
+                const frequencyGroup = document.querySelector('input[name="eventFrequency"]').closest('.form-group');
+                frequencyGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = frequencyGroup;
+                errorMessages.push('Please select event frequency preference');
+                hasErrors = true;
+            }
+
+            // Validate eventBudget (single-choice required)
+            const budgetChecked = document.querySelectorAll('input[name="eventBudget"]:checked');
+            if (budgetChecked.length === 0) {
+                const budgetGroup = document.querySelector('input[name="eventBudget"]').closest('.form-group');
+                budgetGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = budgetGroup;
+                errorMessages.push('Please select event budget preference');
+                hasErrors = true;
+            }
+
+            // Validate 3dprintInterest (single-choice required)
+            const printChecked = document.querySelectorAll('input[name="3dprintInterest"]:checked');
+            if (printChecked.length === 0) {
+                const printGroup = document.querySelector('input[name="3dprintInterest"]').closest('.form-group');
+                printGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = printGroup;
+                errorMessages.push('Please indicate 3D print interest');
+                hasErrors = true;
+            }
+
+            // Validate alcoholPreference (single-choice required)
+            const alcoholChecked = document.querySelectorAll('input[name="alcoholPreference"]:checked');
+            if (alcoholChecked.length === 0) {
+                const alcoholGroup = document.querySelector('input[name="alcoholPreference"]').closest('.form-group');
+                alcoholGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = alcoholGroup;
+                errorMessages.push('Please select alcohol preference');
+                hasErrors = true;
+            }
+
+            // If there are errors, scroll to first error and show message
+            if (hasErrors) {
+                if (firstErrorElement) {
+                    firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                // Show error message at top
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = 'Please complete all required fields marked in red:\n• ' + errorMessages.join('\n• ');
+                errorDiv.classList.add('show');
+                window.scrollTo(0, 0);
+
+                return;
+            }
 
             // Show loading state with spinning icon
             const submitBtn = this.querySelector('.submit-btn');
@@ -613,10 +757,13 @@
             fetch(this.action, {
                 method: 'POST',
                 body: formData,
-                mode: 'no-cors'
+                mode: 'no-cors' // Required for Google Apps Script
             })
             .then(() => {
+                // Show success (no-cors means we assume success)
                 document.getElementById('successMessage').classList.add('show');
+
+                // Hide form and show success page after a delay
                 setTimeout(() => {
                     document.getElementById('pollForm').style.display = 'none';
                     document.getElementById('successPage').style.display = 'block';
@@ -628,6 +775,7 @@
                 document.getElementById('errorMessage').classList.add('show');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
+
                 setTimeout(() => {
                     document.getElementById('errorMessage').classList.remove('show');
                 }, 5000);

@@ -106,6 +106,13 @@
                         Your input will help us decide what to create. This survey takes about 2 minutes.
                     </p>
 
+                    <!-- Deadline Notice -->
+                    <div class="phase-card" style="max-width: 700px; margin: 2rem auto; text-align: center;">
+                        <p style="margin: 0; font-size: 1rem; color: var(--text-card);">
+                            <strong style="color: #FFC107;">Poll closes October 17, 2025 at 11:59 PM</strong>
+                        </p>
+                    </div>
+
                     <!-- Success/Error Messages -->
                     <div id="successMessage" class="message success">
                         Thank you for completing the poll! Your responses have been submitted.
@@ -114,7 +121,7 @@
                         There was an error submitting your responses. Please try again.
                     </div>
 
-                    <form id="merchForm" action="https://script.google.com/macros/s/AKfycbzbPstztdUYlVy9djFssPUXSEzrmRy9G3L5-LpoFdUZ5-7oL6wr1Q0xkopBokQRad7KPw/exec" method="POST">
+                    <form id="merchForm" action="https://script.google.com/macros/s/AKfycbzbPstztdUYlVy9djFssPUXSEzrmRy9G3L5-LpoFdUZ5-7oL6wr1Q0xkopBokQRad7KPw/exec" method="POST" novalidate>
 
                         <!-- Email Section -->
                         <div class="form-section">
@@ -407,7 +414,7 @@
                             <h3>Additional Ideas</h3>
 
                             <div class="form-group">
-                                <label for="suggestions">Any specific insect species or design ideas? <span class="optional-indicator">(optional)</span></label>
+                                <label for="suggestions">Any specific insect species or design ideas?</label>
                                 <textarea id="suggestions" name="suggestions" rows="4" placeholder="Example: 'Monarch butterfly with orange and black colors' or 'Realistic hercules beetle for my desk'"></textarea>
                             </div>
                         </div>
@@ -451,18 +458,11 @@
         <div class="footer-content">
             <p>&copy; 2025 UCR Entomology Social Committee</p>
             <p>All rights reserved.</p>
-            <div class="footer-logos">
-                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
-                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
-                </a>
-                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
-                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
-                </a>
-            </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
+    <script src="js/poll-deadline.js"></script>
     <script src="js/main.js"></script>
     <script src="js/poll-progress.js"></script>
     <script>
@@ -482,9 +482,134 @@
             });
         });
 
+        // Real-time email validation
+        document.getElementById('email').addEventListener('input', function() {
+            const emailGroup = this.closest('.form-group');
+            const email = this.value.trim();
+
+            if (email && email.endsWith('@ucr.edu')) {
+                emailGroup.classList.remove('error');
+                emailGroup.classList.add('valid');
+            } else if (email) {
+                emailGroup.classList.remove('valid');
+                emailGroup.classList.add('error');
+            } else {
+                emailGroup.classList.remove('error', 'valid');
+            }
+        });
+
+        // Real-time checkbox validation function
+        function setupCheckboxValidation(fieldName, isMultiSelect) {
+            const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedBoxes = document.querySelectorAll(`input[name="${fieldName}"]:checked`);
+                    const formGroup = this.closest('.form-group');
+
+                    if (checkedBoxes.length > 0) {
+                        formGroup.classList.remove('error');
+                        formGroup.classList.add('valid');
+                    } else {
+                        formGroup.classList.remove('valid');
+                    }
+                });
+            });
+        }
+
+        // Setup validation for required fields
+        setupCheckboxValidation('purchaseInterest', false);
+        setupCheckboxValidation('designStyle', false);
+        setupCheckboxValidation('printingMethod', false);
+        setupCheckboxValidation('colorPreference', false);
+        setupCheckboxValidation('sizePreference', false);
+        setupCheckboxValidation('priceSmall', false);
+        setupCheckboxValidation('priceLarge', false);
+
+        // Setup validation for optional fields (show green when filled)
+        setupCheckboxValidation('keychainProducts', true);
+        setupCheckboxValidation('decorativeProducts', true);
+        setupCheckboxValidation('functionalProducts', true);
+        setupCheckboxValidation('favoriteInsects', true);
+
+        // Textarea validation for suggestions (optional)
+        document.getElementById('suggestions').addEventListener('input', function() {
+            const formGroup = this.closest('.form-group');
+            const value = this.value.trim();
+
+            if (value) {
+                formGroup.classList.add('valid');
+            } else {
+                formGroup.classList.remove('valid');
+            }
+        });
+
         // Form validation and submission
         document.getElementById('merchForm').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Clear previous error messages
+            document.getElementById('errorMessage').classList.remove('show');
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+
+            let hasErrors = false;
+            let errorMessages = [];
+            let firstErrorElement = null;
+
+            // Validate UCR email
+            const emailInput = document.getElementById('email');
+            const emailGroup = emailInput.closest('.form-group');
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                emailGroup.classList.add('error');
+                errorMessages.push('Please enter your UCR email address');
+                hasErrors = true;
+                if (!firstErrorElement) firstErrorElement = emailGroup;
+            } else if (!email.endsWith('@ucr.edu')) {
+                emailGroup.classList.add('error');
+                errorMessages.push('Please use your UCR email address (@ucr.edu)');
+                hasErrors = true;
+                if (!firstErrorElement) firstErrorElement = emailGroup;
+            }
+
+            // Helper function to validate checkbox groups
+            function validateCheckboxGroup(name, label) {
+                const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
+                if (checked.length === 0) {
+                    const firstCheckbox = document.querySelector(`input[name="${name}"]`);
+                    if (firstCheckbox) {
+                        const formGroup = firstCheckbox.closest('.form-group');
+                        formGroup.classList.add('error');
+                        errorMessages.push(`Please select: ${label}`);
+                        hasErrors = true;
+                        if (!firstErrorElement) firstErrorElement = formGroup;
+                    }
+                }
+            }
+
+            // Validate all required fields
+            validateCheckboxGroup('purchaseInterest', 'Purchase interest');
+            validateCheckboxGroup('designStyle', 'Preferred design style');
+            validateCheckboxGroup('printingMethod', 'Printing method preference');
+            validateCheckboxGroup('colorPreference', 'Color/finish preference');
+            validateCheckboxGroup('sizePreference', 'Preferred size');
+            validateCheckboxGroup('priceSmall', 'Price for keychain/small item');
+            validateCheckboxGroup('priceLarge', 'Price for larger decorative piece');
+
+            // If there are errors, show them and scroll to first error
+            if (hasErrors) {
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = '⚠️ Please complete all required fields:\n\n' + errorMessages.join('\n');
+                errorDiv.classList.add('show');
+
+                // Scroll to first error
+                if (firstErrorElement) {
+                    firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
 
             // Show loading state with spinning icon
             const submitBtn = this.querySelector('.submit-btn');
@@ -534,6 +659,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
+                document.getElementById('errorMessage').textContent = 'There was an error submitting your responses. Please try again.';
                 document.getElementById('errorMessage').classList.add('show');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;

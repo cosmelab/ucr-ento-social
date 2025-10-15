@@ -106,6 +106,13 @@
                         This survey takes about 3-5 minutes to complete.
                     </p>
 
+                    <!-- Deadline Notice -->
+                    <div class="phase-card" style="max-width: 700px; margin: 2rem auto; text-align: center;">
+                        <p style="margin: 0; font-size: 1rem; color: var(--text-card);">
+                            <strong style="color: #FFC107;">Poll closes October 17, 2025 at 11:59 PM</strong>
+                        </p>
+                    </div>
+
                     <!-- Success/Error Messages -->
                     <div id="successMessage" class="message success">
                         Thank you for completing the poll! Your responses have been submitted.
@@ -114,7 +121,7 @@
                         There was an error submitting your responses. Please try again.
                     </div>
 
-                    <form id="coffeeHourForm" action="https://script.google.com/macros/s/AKfycbzGZ2Ep6OIB1jQTdS0U9Y8h270s7zsb7RchVVUPKK7bEXGB5NutBVn0HB-hCm4O6Nrx/exec" method="POST">
+                    <form id="coffeeHourForm" action="https://script.google.com/macros/s/AKfycbzGZ2Ep6OIB1jQTdS0U9Y8h270s7zsb7RchVVUPKK7bEXGB5NutBVn0HB-hCm4O6Nrx/exec" method="POST" novalidate>
                         <!-- Section 1: About You -->
                         <div class="form-section">
                             <h3>About You</h3>
@@ -217,100 +224,7 @@
                                 <span class="field-help">Please select at least one day</span>
                             </div>
 
-                            <!-- Question 4: Time of Day -->
-                            <div class="form-group">
-                                <label for="timeOfDay" class="required">What time of day works best for you?</label>
-                                <div class="checkbox-group single-choice" data-group="timeOfDay">
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="time-morning" name="timeOfDay" value="Morning (9 AM - 12 PM)" required>
-                                        <label for="time-morning">Morning (9 AM - 12 PM)</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="time-afternoon" name="timeOfDay" value="Afternoon (1 PM - 5 PM)">
-                                        <label for="time-afternoon">Afternoon (1 PM - 5 PM)</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Question 5: Morning Time Slots (conditional) -->
-                            <div class="form-group" id="morningSlots" style="display: none;">
-                                <label>If you selected Morning, which time slot works best? <span class="optional-indicator">(optional)</span></label>
-                                <div class="time-slots-inline">
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-900" name="morningTime" value="9:00-9:30 AM">
-                                        <label for="morning-900">9:00-9:30 AM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-930" name="morningTime" value="9:30-10:00 AM">
-                                        <label for="morning-930">9:30-10:00 AM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-1000" name="morningTime" value="10:00-10:30 AM">
-                                        <label for="morning-1000">10:00-10:30 AM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-1030" name="morningTime" value="10:30-11:00 AM">
-                                        <label for="morning-1030">10:30-11:00 AM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-1100" name="morningTime" value="11:00-11:30 AM">
-                                        <label for="morning-1100">11:00-11:30 AM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-1130" name="morningTime" value="11:30 AM-12:00 PM">
-                                        <label for="morning-1130">11:30 AM-12:00 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="morning-any" name="morningTime" value="Any morning time">
-                                        <label for="morning-any">Any morning time</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Question 6: Afternoon Time Slots (conditional) -->
-                            <div class="form-group" id="afternoonSlots" style="display: none;">
-                                <label>If you selected Afternoon, which time slot works best? <span class="optional-indicator">(optional)</span></label>
-                                <div class="time-slots-inline">
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-100" name="afternoonTime" value="1:00-1:30 PM">
-                                        <label for="afternoon-100">1:00-1:30 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-130" name="afternoonTime" value="1:30-2:00 PM">
-                                        <label for="afternoon-130">1:30-2:00 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-200" name="afternoonTime" value="2:00-2:30 PM">
-                                        <label for="afternoon-200">2:00-2:30 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-230" name="afternoonTime" value="2:30-3:00 PM">
-                                        <label for="afternoon-230">2:30-3:00 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-300" name="afternoonTime" value="3:00-3:30 PM">
-                                        <label for="afternoon-300">3:00-3:30 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-330" name="afternoonTime" value="3:30-4:00 PM">
-                                        <label for="afternoon-330">3:30-4:00 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-400" name="afternoonTime" value="4:00-4:30 PM">
-                                        <label for="afternoon-400">4:00-4:30 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-430" name="afternoonTime" value="4:30-5:00 PM">
-                                        <label for="afternoon-430">4:30-5:00 PM</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="afternoon-any" name="afternoonTime" value="Any afternoon time">
-                                        <label for="afternoon-any">Any afternoon time</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Question 13: Duration -->
+                            <!-- Question 4: Duration -->
                             <div class="form-group">
                                 <label for="duration" class="required">How long should coffee hour last?</label>
                                 <div class="checkbox-group single-choice" data-group="duration">
@@ -319,20 +233,68 @@
                                         <label for="duration-30">30 minutes</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="duration-45" name="duration" value="45 minutes">
-                                        <label for="duration-45">45 minutes</label>
-                                    </div>
-                                    <div class="checkbox-item">
                                         <input type="checkbox" id="duration-60" name="duration" value="1 hour">
                                         <label for="duration-60">1 hour</label>
                                     </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="duration-90" name="duration" value="1.5 hours">
-                                        <label for="duration-90">1.5 hours</label>
+                                </div>
+                            </div>
+
+                            <!-- Question 5: Start Time (Option B) -->
+                            <div class="form-group">
+                                <label class="required">What time would you like coffee hour to START? (Select all that apply)</label>
+                                <span class="field-help">Please select at least one start time</span>
+
+                                <!-- Morning Section -->
+                                <div style="margin-top: 1rem;">
+                                    <h4 style="color: var(--primary); margin-bottom: 0.75rem; font-size: 1rem;">Morning Times</h4>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-900" name="startTime" value="9:00 AM">
+                                            <label for="time-900">9:00 AM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-930" name="startTime" value="9:30 AM">
+                                            <label for="time-930">9:30 AM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-1000" name="startTime" value="10:00 AM">
+                                            <label for="time-1000">10:00 AM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-1030" name="startTime" value="10:30 AM">
+                                            <label for="time-1030">10:30 AM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-1100" name="startTime" value="11:00 AM">
+                                            <label for="time-1100">11:00 AM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-1130" name="startTime" value="11:30 AM">
+                                            <label for="time-1130">11:30 AM</label>
+                                        </div>
                                     </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="duration-flex" name="duration" value="Flexible/open-ended">
-                                        <label for="duration-flex">Flexible/open-ended</label>
+                                </div>
+
+                                <!-- Afternoon Section -->
+                                <div style="margin-top: 1.5rem;">
+                                    <h4 style="color: var(--primary); margin-bottom: 0.75rem; font-size: 1rem;">Afternoon Times (2:00 PM - 4:00 PM)</h4>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-200" name="startTime" value="2:00 PM">
+                                            <label for="time-200">2:00 PM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-230" name="startTime" value="2:30 PM">
+                                            <label for="time-230">2:30 PM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-300" name="startTime" value="3:00 PM">
+                                            <label for="time-300">3:00 PM</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="time-330" name="startTime" value="3:30 PM">
+                                            <label for="time-330">3:30 PM</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +306,7 @@
 
                             <!-- Question 7: Coffee Types -->
                             <div class="form-group">
-                                <label>What type of coffee would you prefer? (Select all that apply) <span class="optional-indicator">(optional)</span></label>
+                                <label>What type of coffee would you prefer? (Select all that apply)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="coffee-drip" name="coffeeTypes" value="Drip/Pour-over coffee">
@@ -379,7 +341,7 @@
 
                             <!-- Question 8: Tea Types -->
                             <div class="form-group">
-                                <label>What type of tea would you prefer? (Select all that apply) <span class="optional-indicator">(optional)</span></label>
+                                <label>What type of tea would you prefer? (Select all that apply)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="tea-black" name="teaTypes" value="Black tea">
@@ -410,7 +372,7 @@
 
                             <!-- Question 9: Food Options -->
                             <div class="form-group">
-                                <label>What food options would you like to see? (Select all that apply) <span class="optional-indicator">(optional)</span></label>
+                                <label>What food options would you like to see? (Select all that apply)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="food-pastries" name="foodOptions" value="Pastries and baked goods">
@@ -496,7 +458,7 @@
 
                             <!-- Question 14: Background Music -->
                             <div class="form-group">
-                                <label>If you prefer background music, what type? (Select all that apply) <span class="optional-indicator">(optional)</span></label>
+                                <label>If you prefer background music, what type? (Select all that apply)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="music-classical" name="musicTypes" value="Classical/Instrumental">
@@ -559,7 +521,7 @@
 
                             <!-- Question 15: Barriers -->
                             <div class="form-group">
-                                <label>What would prevent you from attending coffee hour? (Select all that apply) <span class="optional-indicator">(optional)</span></label>
+                                <label>What would prevent you from attending coffee hour? (Select all that apply)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="barrier-class" name="barriers" value="Class conflicts">
@@ -594,7 +556,7 @@
 
                             <!-- Question 16: Additional Suggestions -->
                             <div class="form-group">
-                                <label for="suggestions">Any additional suggestions for making coffee hour successful? <span class="optional-indicator">(optional)</span></label>
+                                <label for="suggestions">Any additional suggestions for making coffee hour successful?</label>
                                 <textarea id="suggestions" name="suggestions" rows="4" placeholder="Share your ideas, concerns, or suggestions here..."></textarea>
                             </div>
                         </div>
@@ -638,18 +600,11 @@
         <div class="footer-content">
             <p>&copy; 2025 UCR Entomology Social Committee</p>
             <p>All rights reserved.</p>
-            <div class="footer-logos">
-                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
-                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
-                </a>
-                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
-                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
-                </a>
-            </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
+    <script src="js/poll-deadline.js"></script>
     <script src="js/main.js"></script>
     <script src="js/poll-progress.js"></script>
     <script>
@@ -669,34 +624,191 @@
             });
         });
 
-        // Show/hide time slots based on selection
-        document.querySelectorAll('input[name="timeOfDay"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const morningSlots = document.getElementById('morningSlots');
-                const afternoonSlots = document.getElementById('afternoonSlots');
+        // Real-time validation - remove red glow and add green when fixed
+        // Email validation
+        document.getElementById('email').addEventListener('input', function() {
+            const emailGroup = this.closest('.form-group');
+            const email = this.value.trim();
 
-                if (this.value.includes('Morning')) {
-                    morningSlots.style.display = 'block';
-                    afternoonSlots.style.display = 'none';
-                    // Clear afternoon selection
-                    document.querySelectorAll('input[name="afternoonTime"]').forEach(r => r.checked = false);
-                } else if (this.value.includes('Afternoon')) {
-                    afternoonSlots.style.display = 'block';
-                    morningSlots.style.display = 'none';
-                    // Clear morning selection
-                    document.querySelectorAll('input[name="morningTime"]').forEach(r => r.checked = false);
-                }
+            if (email && email.endsWith('@ucr.edu')) {
+                emailGroup.classList.remove('error');
+                emailGroup.classList.add('valid');
+            } else if (email) {
+                emailGroup.classList.remove('valid');
+                emailGroup.classList.add('error');
+            } else {
+                emailGroup.classList.remove('error', 'valid');
+            }
+        });
+
+        // Checkbox group validation (for required multi-select and single-select)
+        function setupCheckboxValidation(fieldName, isMultiSelect) {
+            const checkboxes = document.querySelectorAll(`input[name="${fieldName}"]`);
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedBoxes = document.querySelectorAll(`input[name="${fieldName}"]:checked`);
+                    const formGroup = this.closest('.form-group');
+
+                    if (checkedBoxes.length > 0) {
+                        formGroup.classList.remove('error');
+                        formGroup.classList.add('valid');
+                    } else {
+                        formGroup.classList.remove('valid');
+                    }
+                });
             });
+        }
+
+        // Setup validation for all required checkbox groups
+        setupCheckboxValidation('role', false);
+        setupCheckboxValidation('frequency', false);
+        setupCheckboxValidation('days', true);
+        setupCheckboxValidation('duration', false);
+        setupCheckboxValidation('startTime', true);
+        setupCheckboxValidation('environment', false);
+        setupCheckboxValidation('location', false);
+        setupCheckboxValidation('labHosting', false);
+
+        // Setup validation for OPTIONAL checkbox groups (show green when filled)
+        setupCheckboxValidation('coffeeTypes', true);
+        setupCheckboxValidation('teaTypes', true);
+        setupCheckboxValidation('foodOptions', true);
+        setupCheckboxValidation('musicTypes', true);
+        setupCheckboxValidation('barriers', true);
+
+        // Textarea validation (suggestions field)
+        document.getElementById('suggestions').addEventListener('input', function() {
+            const formGroup = this.closest('.form-group');
+            const value = this.value.trim();
+
+            if (value) {
+                formGroup.classList.add('valid');
+            } else {
+                formGroup.classList.remove('valid');
+            }
         });
 
         // Form validation and submission
         document.getElementById('coffeeHourForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Validate required checkbox group (days)
+            // Clear previous error states (keep valid/green states)
+            document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+            document.getElementById('errorMessage').classList.remove('show');
+
+            let hasErrors = false;
+            let firstErrorElement = null;
+            let errorMessages = [];
+
+            // Validate UCR email
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            if (!email) {
+                const emailGroup = emailInput.closest('.form-group');
+                emailGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = emailGroup;
+                errorMessages.push('Email address is required');
+                hasErrors = true;
+            } else if (!email.endsWith('@ucr.edu')) {
+                const emailGroup = emailInput.closest('.form-group');
+                emailGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = emailGroup;
+                errorMessages.push('Please use your UCR email address (@ucr.edu)');
+                hasErrors = true;
+            }
+
+            // Validate role (single-choice required)
+            const roleChecked = document.querySelectorAll('input[name="role"]:checked');
+            if (roleChecked.length === 0) {
+                const roleGroup = document.querySelector('input[name="role"]').closest('.form-group');
+                roleGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = roleGroup;
+                errorMessages.push('Please select your role');
+                hasErrors = true;
+            }
+
+            // Validate frequency (single-choice required)
+            const frequencyChecked = document.querySelectorAll('input[name="frequency"]:checked');
+            if (frequencyChecked.length === 0) {
+                const frequencyGroup = document.querySelector('input[name="frequency"]').closest('.form-group');
+                frequencyGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = frequencyGroup;
+                errorMessages.push('Please select frequency preference');
+                hasErrors = true;
+            }
+
+            // Validate days (multi-choice required)
             const daysChecked = document.querySelectorAll('input[name="days"]:checked');
             if (daysChecked.length === 0) {
-                alert('Please select at least one day that works for you.');
+                const daysGroup = document.querySelector('input[name="days"]').closest('.form-group');
+                daysGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = daysGroup;
+                errorMessages.push('Please select at least one day');
+                hasErrors = true;
+            }
+
+            // Validate duration (single-choice required)
+            const durationChecked = document.querySelectorAll('input[name="duration"]:checked');
+            if (durationChecked.length === 0) {
+                const durationGroup = document.querySelector('input[name="duration"]').closest('.form-group');
+                durationGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = durationGroup;
+                errorMessages.push('Please select duration preference');
+                hasErrors = true;
+            }
+
+            // Validate start time (multi-choice required)
+            const startTimeChecked = document.querySelectorAll('input[name="startTime"]:checked');
+            if (startTimeChecked.length === 0) {
+                const startTimeGroup = document.querySelector('input[name="startTime"]').closest('.form-group');
+                startTimeGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = startTimeGroup;
+                errorMessages.push('Please select at least one start time');
+                hasErrors = true;
+            }
+
+            // Validate environment (single-choice required)
+            const environmentChecked = document.querySelectorAll('input[name="environment"]:checked');
+            if (environmentChecked.length === 0) {
+                const environmentGroup = document.querySelector('input[name="environment"]').closest('.form-group');
+                environmentGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = environmentGroup;
+                errorMessages.push('Please select environment preference');
+                hasErrors = true;
+            }
+
+            // Validate location (single-choice required)
+            const locationChecked = document.querySelectorAll('input[name="location"]:checked');
+            if (locationChecked.length === 0) {
+                const locationGroup = document.querySelector('input[name="location"]').closest('.form-group');
+                locationGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = locationGroup;
+                errorMessages.push('Please select location preference');
+                hasErrors = true;
+            }
+
+            // Validate lab hosting (single-choice required)
+            const labHostingChecked = document.querySelectorAll('input[name="labHosting"]:checked');
+            if (labHostingChecked.length === 0) {
+                const labHostingGroup = document.querySelector('input[name="labHosting"]').closest('.form-group');
+                labHostingGroup.classList.add('error');
+                if (!firstErrorElement) firstErrorElement = labHostingGroup;
+                errorMessages.push('Please indicate lab hosting willingness');
+                hasErrors = true;
+            }
+
+            // If there are errors, scroll to first error and show message
+            if (hasErrors) {
+                if (firstErrorElement) {
+                    firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                // Show error message at top
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = 'Please complete all required fields marked in red:\n• ' + errorMessages.join('\n• ');
+                errorDiv.classList.add('show');
+                window.scrollTo(0, 0);
+
                 return;
             }
 
@@ -718,7 +830,7 @@
             const formData = new FormData(this);
 
             // Process checkbox groups to combine values
-            const checkboxGroups = ['days', 'coffeeTypes', 'teaTypes', 'foodOptions', 'musicTypes', 'barriers'];
+            const checkboxGroups = ['days', 'startTime', 'coffeeTypes', 'teaTypes', 'foodOptions', 'musicTypes', 'barriers'];
             checkboxGroups.forEach(group => {
                 const checked = document.querySelectorAll(`input[name="${group}"]:checked`);
                 const values = Array.from(checked).map(cb => cb.value).join(', ');

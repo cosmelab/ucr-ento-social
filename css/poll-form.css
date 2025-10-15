@@ -81,8 +81,13 @@
     height: 18px;
     margin: 0.15rem 0 0 0;
     cursor: pointer;
-    accent-color: #4A90E2;
+    accent-color: #85FA6E;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+    filter: drop-shadow(0 0 4px rgba(133, 250, 110, 0.6));
 }
 
 .checkbox-item label {
@@ -197,8 +202,13 @@
 
 .message.error {
     background: linear-gradient(135deg, rgba(255, 85, 85, 0.1), rgba(255, 85, 85, 0.05));
-    border: 1px solid rgba(255, 85, 85, 0.3);
+    border: 2px solid #ff5555;
     color: #ff5555;
+    white-space: pre-line;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .message.show {
@@ -215,6 +225,56 @@
     font-weight: normal;
 }
 
+/* Error state for missing required fields - RED GLOW */
+.form-group.error {
+    animation: errorShake 0.5s ease;
+}
+
+/* Keep labels red for errors - helps users identify what's wrong */
+.form-group.error label.required {
+    color: #ff5555 !important;
+}
+
+.form-group.error input[type="text"],
+.form-group.error input[type="email"],
+.form-group.error select,
+.form-group.error textarea {
+    border-color: #ff5555 !important;
+    box-shadow: 0 0 15px rgba(255, 85, 85, 0.5) !important;
+    background: rgba(255, 85, 85, 0.05) !important;
+}
+
+.form-group.error .checkbox-group {
+    border: 1px solid #ff5555;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 15px rgba(255, 85, 85, 0.5);
+    background: rgba(255, 85, 85, 0.05);
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Valid/Success state for fixed fields - MINT GLOW */
+/* Keep label color the same, only add mint glow (no border) */
+
+.form-group.valid input[type="text"],
+.form-group.valid input[type="email"],
+.form-group.valid textarea {
+    box-shadow: 0 0 15px rgba(190, 247, 195, 0.5) !important;
+    background: rgba(190, 247, 195, 0.02) !important;
+}
+
+.form-group.valid .checkbox-group {
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 15px rgba(190, 247, 195, 0.5);
+    background: rgba(190, 247, 195, 0.02);
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
     /* Prevent zoom on input focus */
@@ -225,17 +285,32 @@
         font-size: 16px; /* Must be at least 16px to prevent iOS zoom */
     }
 
-    /* Smaller checkboxes on mobile */
+    /* Smaller checkboxes on mobile with better alignment */
     .checkbox-item input[type="checkbox"] {
         width: 14px;
         height: 14px;
-        margin: 0.2rem 0 0 0;
+        margin: 0;
+        flex-shrink: 0;
+        accent-color: #85FA6E;
+        transition: all 0.3s ease;
     }
 
-    /* Better label alignment on mobile */
+    .checkbox-item input[type="checkbox"]:checked {
+        filter: drop-shadow(0 0 3px rgba(133, 250, 110, 0.6));
+    }
+
+    /* Better label alignment on mobile - move text down to align with checkbox */
     .checkbox-item label {
-        padding-top: 0.1rem;
+        padding-top: 0;
+        margin-top: 2px;
         font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    /* Adjust checkbox item gap and alignment on mobile */
+    .checkbox-item {
+        gap: 0.5rem;
+        align-items: center;
     }
 
     .form-section {

@@ -36,6 +36,7 @@ config.js
 notes.txt
 TODO.txt
 local-notes/
+assistant_rules.md
 
 # Test files
 test-*.html
@@ -44,6 +45,9 @@ test-*.html
 
 # Local/private files directory
 _local/
+
+# Event images (work in progress)
+assets/images/events/
 
 # Python cache
 __pycache__/

@@ -7,6 +7,8 @@ function updateProgressCircle() {
 
     const formSections = document.querySelectorAll('.form-section');
     const sectionStatus = [];
+    let totalRequiredFields = 0;
+    let completedFields = 0;
     let completedSections = 0;
     let totalRequiredSections = 0;
     let currentSectionName = '';
@@ -17,53 +19,82 @@ function updateProgressCircle() {
 
         const sectionName = h3.textContent.trim();
 
-        // Check for required fields in this section
-        const requiredInputs = section.querySelectorAll('[required], .checkbox-group[data-group]');
+        let sectionTotalFields = 0;
+        let sectionCompletedFields = 0;
 
-        if (requiredInputs.length === 0) return; // Skip sections without required fields
+        // Find ALL questions by looking for main labels (both required and optional)
+        // Main question labels are direct children of .form-group
+        const allLabels = section.querySelectorAll('.form-group > label');
 
-        totalRequiredSections++;
-        let sectionComplete = true;
+        allLabels.forEach((label) => {
+            // Get the "for" attribute
+            const forAttr = label.getAttribute('for');
 
-        requiredInputs.forEach((input) => {
-            // Handle single-choice checkbox groups
-            if (input.classList.contains('checkbox-group') && input.hasAttribute('data-group')) {
-                const groupName = input.getAttribute('data-group');
-                const checked = input.querySelectorAll('input[type="checkbox"]:checked');
-                if (checked.length === 0) {
-                    sectionComplete = false;
-                }
+            // Skip the suggestions field - don't count it in progress
+            if (forAttr === 'suggestions') {
+                return;
             }
-            // Handle regular required fields
-            else if (input.hasAttribute('required')) {
-                if (input.type === 'checkbox' || input.type === 'radio') {
-                    const name = input.name;
-                    const anyChecked = section.querySelector(`[name="${name}"]:checked`);
-                    if (!anyChecked) {
-                        sectionComplete = false;
+
+            // Count this as one question
+            sectionTotalFields++;
+            totalRequiredFields++;
+
+            // Find the associated input/field for this label
+            let isCompleted = false;
+
+            if (forAttr) {
+                // Try to find the input by ID
+                const input = section.querySelector(`#${forAttr}`);
+                if (input) {
+                    // Found a single input field (text, email, select, etc.)
+                    if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
+                        isCompleted = input.value && input.value.trim() !== '';
                     }
                 } else {
-                    if (!input.value.trim()) {
-                        sectionComplete = false;
+                    // ID not found - probably a checkbox/radio group where label has for="role" but inputs have different IDs
+                    // Fall back to checking the parent form-group
+                    const formGroup = label.closest('.form-group');
+                    if (formGroup) {
+                        const checkedInputs = formGroup.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+                        isCompleted = checkedInputs.length > 0;
                     }
                 }
+            } else {
+                // Label doesn't have "for" - check parent form-group
+                const formGroup = label.closest('.form-group');
+                if (formGroup) {
+                    // Check for any checked checkboxes or radios in this form group
+                    const checkedInputs = formGroup.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+                    isCompleted = checkedInputs.length > 0;
+                }
+            }
+
+            if (isCompleted) {
+                sectionCompletedFields++;
+                completedFields++;
             }
         });
 
-        if (sectionComplete) {
-            completedSections++;
-            sectionStatus.push({ name: sectionName, completed: true });
-        } else {
-            sectionStatus.push({ name: sectionName, completed: false });
-            if (!currentSectionName) {
-                currentSectionName = sectionName;
+        // Update section status
+        if (sectionTotalFields > 0) {
+            totalRequiredSections++;
+            const sectionComplete = (sectionCompletedFields === sectionTotalFields);
+
+            if (sectionComplete) {
+                completedSections++;
+                sectionStatus.push({ name: sectionName, completed: true });
+            } else {
+                sectionStatus.push({ name: sectionName, completed: false });
+                if (!currentSectionName) {
+                    currentSectionName = sectionName;
+                }
             }
         }
     });
 
-    // Calculate progress percentage
-    const progressPercentage = totalRequiredSections > 0 ?
-        Math.round((completedSections / totalRequiredSections) * 100) : 0;
+    // Calculate progress percentage based on all questions (required + optional)
+    const progressPercentage = totalRequiredFields > 0 ?
+        Math.round((completedFields / totalRequiredFields) * 100) : 0;
 
     // Update circle progress
     const circumference = 2 * Math.PI * 45; // radius = 45 for 100px circle
@@ -74,6 +105,32 @@ function updateProgressCircle() {
 
     if (progressRing) {
         progressRing.style.strokeDashoffset = offset;
+
+        // Dynamic color based on progress percentage
+        let startColor, endColor;
+
+        if (progressPercentage <= 30) {
+            // Red to Orange (0-30%)
+            startColor = '#ff5555';
+            endColor = '#ff8c00';
+        } else if (progressPercentage <= 70) {
+            // Orange to Yellow (30-70%)
+            startColor = '#ff8c00';
+            endColor = '#FFC947';
+        } else {
+            // Yellow to Green (70-100%)
+            startColor = '#FFC947';
+            endColor = '#50fa7b';
+        }
+
+        // Update gradient stops
+        const gradient = document.querySelector('#progressGradient');
+        if (gradient) {
+            const stop1 = gradient.querySelector('stop:first-child');
+            const stop2 = gradient.querySelector('stop:last-child');
+            if (stop1) stop1.style.stopColor = startColor;
+            if (stop2) stop2.style.stopColor = endColor;
+        }
     }
     if (progressPercent) {
         progressPercent.textContent = progressPercentage + '%';
