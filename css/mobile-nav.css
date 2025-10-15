@@ -33,13 +33,27 @@
         min-height: 50px !important;
     }
 
-    /* Center the brand text */
+    /* Logo on the left */
+    .nav-brand-logo {
+        position: absolute !important;
+        left: -2.5rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        height: 50px !important;
+        width: auto !important;
+        z-index: 999999 !important;
+    }
+
+    /* Center the brand text in the middle */
     .nav-brand {
         position: absolute !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         text-align: center !important;
         z-index: 999999 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
     .nav-brand a,
@@ -51,6 +65,23 @@
     .nav-brand .established {
         align-self: center !important;
         padding-right: 0 !important;
+        text-align: center !important;
+        margin-top: -0.3rem !important;
+    }
+
+    .nav-brand-link {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0 !important;
+        line-height: 1.2 !important;
+    }
+
+    .nav-brand-link span {
+        display: block !important;
+        text-align: center !important;
+        line-height: 1.05 !important;
+        word-spacing: 9999px !important; /* Force "Social Committee" to break into separate lines */
     }
 
     /* Make hamburger bigger and position on right */

@@ -215,16 +215,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add scroll effect to navbar
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(68, 71, 90, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.background = '';
-            navbar.style.backdropFilter = '';
-        }
-    }
-});
+// Navbar stays transparent - no scroll effect
