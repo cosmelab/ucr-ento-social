@@ -786,9 +786,34 @@ a:hover {
 
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center the last 4 cards in the second row (members 6-9) - DESKTOP ONLY */
+@media (min-width: 769px) {
+    .members-grid .member-card:nth-child(n+6) {
+        grid-column: auto;
+    }
+
+    .members-grid .member-card:nth-child(6) {
+        grid-column: 2 / 3;
+    }
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 768px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .members-grid .member-card {
+        grid-column: auto !important;
+    }
 }
 
 .member-card {
