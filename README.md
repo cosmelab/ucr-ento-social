@@ -1,10 +1,14 @@
-# UCR Entomology Social Committee Website
+<div align="center">
+  <img src="assets/images/icons/logo.png" alt="UCR Entomology Social Committee Logo" width="200">
 
-> Building community through shared experiences in the Department of Entomology at UC Riverside
+  # UCR Entomology Social Committee Website
 
-[![UC Riverside](https://img.shields.io/badge/UC%20Riverside-003DA5?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdOb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiMwMDNEQTUiLz48L3N2Zz4=)](https://www.ucr.edu)
-[![Department](https://img.shields.io/badge/Entomology-FFC947?style=flat)](https://entomology.ucr.edu/)
-[![Status](https://img.shields.io/badge/Status-Active-success)](https://github.com/cosmelab/ucr-ento-social)
+  > Building community through shared experiences in the Department of Entomology at UC Riverside
+
+  [![UC Riverside](https://img.shields.io/badge/UC%20Riverside-003DA5?style=flat&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdOb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiMwMDNEQTUiLz48L3N2Zz4=)](https://www.ucr.edu)
+  [![Department](https://img.shields.io/badge/Entomology-FFC947?style=flat)](https://entomology.ucr.edu/)
+  [![Status](https://img.shields.io/badge/Status-Active-success)](https://github.com/cosmelab/ucr-ento-social)
+</div>
 
 ## Overview
 
@@ -223,7 +227,7 @@ This project is proprietary software. Redistribution is not permitted without ex
 - UC Riverside Department of Entomology
 - Social Committee volunteers
 - Department faculty and students for feedback
-- UCR IT Services for hosting support
+- GitHub Pages for hosting infrastructure
 
 ## Contact
 
