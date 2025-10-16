@@ -1182,10 +1182,16 @@ a:hover {
     opacity: 1;
 }
 
-/* Desktop adjustment - push slideshow images down to avoid navbar overlap */
+/* Desktop adjustment - increase height and adjust positioning to show full images */
 @media (min-width: 769px) {
+    .hero-gallery {
+        height: 600px; /* Taller on desktop to accommodate navbar */
+    }
+
     .hero-gallery-slideshow .slide {
-        background-position: center 70px !important; /* Push image down by 70px on desktop only */
+        background-position: center center !important;
+        background-size: contain !important; /* Show full image without cropping */
+        background-repeat: no-repeat !important;
     }
 }
 
