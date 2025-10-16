@@ -1182,6 +1182,13 @@ a:hover {
     opacity: 1;
 }
 
+/* Desktop adjustment - push slideshow images down to avoid navbar overlap */
+@media (min-width: 769px) {
+    .hero-gallery-slideshow .slide {
+        background-position: center 70px !important; /* Push image down by 70px on desktop only */
+    }
+}
+
 /* Ken Burns effect - subtle zoom and pan */
 @keyframes kenBurns {
     0% {
