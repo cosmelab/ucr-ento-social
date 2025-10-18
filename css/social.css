@@ -65,16 +65,18 @@ body {
 
 body::before {
     content: '';
-    position: absolute; /* Absolute to body */
+    position: fixed; /* Fixed to viewport */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100%; /* Exactly body height */
+    width: 100vw;
+    height: 100vh;
     background-image: url('../assets/images/backgrounds/body_bg.png');
     background-repeat: repeat;
-    opacity: 0.15; /* More visible */
-    z-index: -10; /* Way behind everything */
+    background-size: 600px 600px; /* Larger pattern - less tiling */
+    opacity: 0.2; /* More subtle/faded */
+    z-index: 0; /* Above default background */
     pointer-events: none;
 }
 
@@ -132,7 +134,7 @@ a:hover {
     background-size: 100% auto; /* Full width, height auto */
     background-repeat: no-repeat;
     background-position: center center;
-    opacity: 0.15; /* Darker/more faded */
+    opacity: 0.5; /* Much more visible */
     z-index: 1;
     pointer-events: none;
 }
@@ -439,7 +441,7 @@ a:hover {
    ==================================== */
 .main-content {
     position: relative;
-    z-index: 1 !important;
+    z-index: 10 !important;
     background-color: transparent;
     /* Remove fixed min-height to allow content to determine height */
 }

@@ -151,7 +151,7 @@ ucr-ento-social/
 - Button padding: 0.75rem 2rem
 - Consistent 1rem-2rem margins
 
-## Current Phase: Events Integration
+## Current Phase: Events Integration - COMPLETED ✅
 
 ### Completed Features
 - Three interactive polls with progress tracking
@@ -160,34 +160,94 @@ ucr-ento-social/
 - Visitor counter with Google Analytics
 - Email template system with Gmail API integration
 - Professional HTML email templates
+- **NEW**: Full events system with timeline page
+- **NEW**: Individual event detail pages
+- **NEW**: Event email announcements
+- **NEW**: Google Calendar .ics integration
 
-### Active Development (October 17, 2025)
-1. **Events Timeline Page**
-   - Create events.html modeled after lab website news.html structure
-   - Timeline layout showing upcoming and past events
-   - Visual cards for each event with images
-   - Links to individual event detail pages
+### Halloween Coffee Hour Event Launch (October 17, 2025) ✅
+Successfully launched the first Social Committee event with complete website and email integration:
 
-2. **First Event: Halloween Coffee Hour**
-   - Individual event page (coffee-hour-halloween.html)
-   - Event details: October 31, 9:30 AM, courtyard
-   - Hosted by Mauck Lab (https://maucklab.ucr.edu)
-   - Integration of event flyer images
-   - RSVP information (costume encouraged!)
+1. **Events Timeline Page (events.html)**
+   - Created timeline layout with upcoming/past events sections
+   - Implemented alternating left-right card layout
+   - Added year label styled as button-like badge with gradient
+   - Timeline line positioned to start below headers (80px offset)
+   - Year badge (2025) with z-index layering to cover timeline
+   - Integrated animated Halloween ghost graphic
+   - Event flyer displayed with proper sizing and hover effects
 
-3. **Event Email System**
-   - Email template for event announcements
-   - Python script for sending event emails
-   - Consistent branding with website
-   - Testing workflow with personal email
+2. **Event Detail Page (coffee-hour-halloween.html)**
+   - Full event information: Friday, October 31, 2025 at 9:30 AM
+   - Location: Courtyard
+   - Hosted by Mauck Lab with attribution link
+   - Google Calendar .ics download integration
+   - Event flyer with gray background for better visibility
+   - Costume encouragement messaging
+   - Responsive design matching site aesthetic
 
-### Next Steps (Priority Order)
-1. Create events.html with timeline structure
-2. Create coffee-hour-halloween.html event detail page
-3. Create coffee-hour-announcement.html email template
-4. Create send-coffee-hour-announcement.py script
-5. Test email delivery to cosme.simple@gmail.com
-6. After approval, send to department mailing list
+3. **Email Announcement System**
+   - Created coffee-hour-announcement.html template
+   - Dark-themed HTML email with inline CSS for compatibility
+   - Gmail API integration via send-coffee-hour-announcement.py
+   - Successfully sent to recipients:
+     - TO: pol.sarkar@ucr.edu (for department forwarding)
+     - CC: Social Committee members (cosme.simple@gmail.com, lcosme@gmail.com, andrelut@ucr.edu, mtana016@ucr.edu)
+   - Email includes link to event details page
+   - Calendar invite download prompt included
+
+4. **Bug Fixes & Polish**
+   - Fixed date correction: Thursday → Friday, October 31, 2025
+   - Fixed white overscroll background (changed to black via html element in css/social.css)
+   - Fixed missing images on GitHub Pages (.gitignore was blocking assets/images/events/)
+   - Improved timeline layout to prevent line cutting through headers
+   - Added responsive year label as styled badge
+   - Verified .ics calendar file has correct date (DTSTART:20251031T163000Z)
+
+### Technical Achievements
+**Timeline Layout Innovation:**
+```css
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: calc(100% - 80px);  /* Shortened to avoid header */
+    top: 80px;  /* Start below "UPCOMING EVENTS" */
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    opacity: 0.3;
+}
+
+.event-year-label {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--bg-surface), #252525);
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    border: 2px solid rgba(74, 144, 226, 0.4);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    position: relative;
+    z-index: 20;  /* Above timeline line */
+    transition: all 0.3s ease;
+}
+```
+
+**Overscroll Fix:**
+```css
+html {
+    scroll-behavior: smooth;
+    background-color: #000000;  /* Black background for overscroll */
+}
+```
+
+**Git Configuration:**
+- Uncommented `# assets/images/events/` in .gitignore
+- Committed all event flyers and animation graphics
+- Successfully deployed to GitHub Pages with all assets visible
+
+### Next Event Planning Phase
 
 ## Future Roadmap
 
