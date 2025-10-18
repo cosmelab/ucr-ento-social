@@ -51,14 +51,18 @@
             display: flex;
             margin-bottom: 4rem;
             position: relative;
+            justify-content: flex-start;
         }
 
-        .event-item:nth-child(odd) {
-            flex-direction: row;
+        /* Alternate left and right using a class instead of nth-child */
+        .event-item.align-left .event-content {
+            margin-right: auto;
+            margin-left: 0;
         }
 
-        .event-item:nth-child(even) {
-            flex-direction: row-reverse;
+        .event-item.align-right .event-content {
+            margin-left: auto;
+            margin-right: 0;
         }
 
         .event-content {
@@ -153,6 +157,53 @@
             color: #7B9DB8;
         }
 
+        .event-badge.today {
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.2), rgba(255, 215, 0, 0.2));
+            border-color: #39FF14;
+            color: #39FF14;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+            }
+        }
+
+        /* Year and month headers */
+        .event-year-section {
+            margin-bottom: 4rem;
+        }
+
+        .event-year-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .event-year-label {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+        }
+
+        .event-year-section:not(:first-child) .event-year-header {
+            margin-top: 4rem;
+        }
+
+        .event-month-header {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 1rem 0;
+            padding-left: 1rem;
+        }
+
         /* Mobile responsive */
         @media (max-width: 768px) {
             .timeline-line {
@@ -229,40 +280,49 @@
                 <div class="timeline-container">
                     <div class="timeline-line"></div>
 
-                    <!-- Event 1: Halloween Coffee Hour (Upcoming) - MOST RECENT AT TOP -->
-                    <div class="event-item">
-                        <div class="event-content">
-                            <span class="event-badge upcoming">Upcoming Event</span>
-                            <img src="assets/images/events/Mauck_Lab_Coffee_Hour_original.png" alt="Spooktacular Coffee Hour" class="event-image">
-                            <h3 class="event-title">Spooktacular Coffee Hour</h3>
-                            <p class="event-date">Thursday, October 31, 2025 | 9:30 AM - 10:30 AM</p>
-                            <p class="event-location">ENTM Courtyard</p>
-                            <p class="event-description">
-                                Join us for our first "Spooktacular" Coffee Hour hosted by Mauck Lab! Enjoy coffee, treats, and good company
-                                as we celebrate Halloween together. Costumes are highly encouraged — show off your spooky, silly, or creative side!
-                            </p>
-                            <p style="color: var(--accent); font-weight: 600; margin-bottom: 1rem;">
-                                Hosted by <a href="https://maucklab.ucr.edu" target="_blank" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Mauck Lab</a>
-                            </p>
-                            <a href="coffee-hour-halloween.html" class="btn" style="width: 100%; text-align: center; display: inline-block; margin-top: 1rem; background: linear-gradient(135deg, #FF8C00, #FFC947); color: #000; font-weight: bold;">
-                                🎃 View Full Event Page
-                            </a>
-                        </div>
-                        <div class="event-date-marker">🎃</div>
+                    <!-- UPCOMING EVENTS SECTION -->
+                    <div class="section-divider" style="text-align: center; margin: 2rem 0 3rem 0;">
+                        <h2 style="color: var(--primary); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;">UPCOMING EVENTS</h2>
                     </div>
 
-                    <!-- Placeholder for future events -->
-                    <div class="event-item">
-                        <div class="event-content" style="text-align: center; border-style: dashed; opacity: 0.7;">
-                            <h3 class="event-title" style="color: var(--text-secondary);">More Events Coming Soon!</h3>
-                            <p class="event-description">
-                                We're planning exciting events based on your poll feedback. Check back soon for updates on coffee hours,
-                                social gatherings, and seasonal celebrations.
-                            </p>
-                            <p style="color: var(--text-secondary); font-size: 3rem; margin: 1rem 0;">🐛</p>
+                    <!-- 2025 Events -->
+                    <div class="event-year-section">
+                        <div class="event-year-header">
+                            <span class="event-year-label">2025</span>
                         </div>
-                        <div class="event-date-marker" style="background: rgba(74, 144, 226, 0.3);">?</div>
+
+                        <!-- October 2025 -->
+                        <h4 class="event-month-header">OCTOBER</h4>
+
+                        <!-- Event 1: Halloween Coffee Hour (Upcoming) -->
+                        <div class="event-item align-left" data-event-date="2025-10-31T09:30:00">
+                            <div class="event-content">
+                                <span class="event-badge" data-event-status></span>
+                                <img src="assets/images/events/Mauck_Lab_Coffee_Hour_gray.png" alt="Spooktacular Coffee Hour" class="event-image">
+                                <h3 class="event-title">Spooktacular Coffee Hour</h3>
+                                <p class="event-date">Thursday, October 31, 2025 | 9:30 AM - 10:30 AM</p>
+                                <p class="event-location">ENTM Courtyard</p>
+                                <p class="event-description">
+                                    Join us for our first "Spooktacular" Coffee Hour hosted by Mauck Lab! Enjoy coffee, treats, and good company
+                                    as we celebrate Halloween together. Costumes are highly encouraged — show off your spooky, silly, or creative side!
+                                </p>
+                                <p style="color: var(--accent); font-weight: 600; margin-bottom: 1rem;">
+                                    Hosted by <a href="https://maucklab.ucr.edu" target="_blank" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Mauck Lab</a>
+                                </p>
+                                <a href="coffee-hour-halloween.html" class="btn" style="width: 100%; text-align: center; display: inline-block; margin-top: 1rem; background: linear-gradient(135deg, #FF8C00, #FFC947); color: #000; font-weight: bold;">
+                                    🎃 View Full Event Page
+                                </a>
+                            </div>
+                            <div class="event-date-marker">🎃</div>
+                        </div>
                     </div>
+
+                    <!-- PAST EVENTS SECTION (will appear here after events pass) -->
+                    <div class="section-divider" style="text-align: center; margin: 4rem 0 3rem 0; display: none;" id="past-events-divider">
+                        <h2 style="color: var(--text-secondary); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;">PAST EVENTS</h2>
+                    </div>
+
+                    <!-- Past events will be added below this section as they occur -->
 
                 </div>
 
@@ -312,5 +372,72 @@
     <!-- Visitor Counter Widget -->
     <link rel="stylesheet" href="css/visitor-widget.css">
     <script src="js/visitor-counter.js"></script>
+
+    <!-- Dynamic Event Status Script -->
+    <script>
+        function updateEventStatuses() {
+            const eventItems = document.querySelectorAll('[data-event-date]');
+            const now = new Date();
+
+            eventItems.forEach(eventItem => {
+                const eventDateStr = eventItem.getAttribute('data-event-date');
+                const eventDate = new Date(eventDateStr);
+                const badge = eventItem.querySelector('[data-event-status]');
+
+                if (!badge) return;
+
+                // Calculate time difference
+                const diffTime = eventDate - now;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+
+                // Remove all status classes
+                badge.classList.remove('upcoming', 'today', 'past');
+
+                // Determine status and text
+                if (diffTime < 0) {
+                    // Event has passed
+                    badge.classList.add('past');
+                    badge.textContent = 'Past Event';
+                } else if (diffDays === 0) {
+                    // Event is today
+                    badge.classList.add('today');
+                    if (diffHours <= 1) {
+                        badge.textContent = `🎃 Starting Soon! 🎃`;
+                    } else {
+                        badge.textContent = `🎃 Today at ${eventDate.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit'})} 🎃`;
+                    }
+                } else if (diffDays === 1) {
+                    // Event is tomorrow
+                    badge.classList.add('upcoming');
+                    badge.textContent = 'Tomorrow';
+                } else if (diffDays <= 7) {
+                    // Event is within a week
+                    badge.classList.add('upcoming');
+                    badge.textContent = `In ${diffDays} days`;
+                } else if (diffDays <= 14) {
+                    // Event is within 2 weeks
+                    badge.classList.add('upcoming');
+                    const weeks = Math.floor(diffDays / 7);
+                    const days = diffDays % 7;
+                    if (days === 0) {
+                        badge.textContent = `In ${weeks} ${weeks === 1 ? 'week' : 'weeks'}`;
+                    } else {
+                        badge.textContent = `In ${weeks} ${weeks === 1 ? 'week' : 'weeks'} and ${days} ${days === 1 ? 'day' : 'days'}`;
+                    }
+                } else {
+                    // Event is far in the future
+                    badge.classList.add('upcoming');
+                    badge.textContent = `In ${diffDays} days`;
+                }
+            });
+        }
+
+        // Update on page load
+        updateEventStatuses();
+
+        // Update every hour
+        setInterval(updateEventStatuses, 3600000);
+    </script>
 </body>
 </html>
