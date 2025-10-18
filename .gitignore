@@ -47,7 +47,7 @@ test-*.html
 _local/
 
 # Event images (work in progress)
-assets/images/events/
+# assets/images/events/
 
 # Python cache
 __pycache__/
