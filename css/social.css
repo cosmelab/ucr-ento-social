@@ -74,7 +74,7 @@ body::before {
     height: 100vh;
     background-image: url('../assets/images/backgrounds/body_bg.png');
     background-repeat: repeat;
-    background-size: 600px 600px; /* Larger pattern - less tiling */
+    background-size: 1024px 1536px; /* Match actual image size for seamless tiling */
     opacity: 0.2; /* More subtle/faded */
     z-index: 0; /* Above default background */
     pointer-events: none;
@@ -131,25 +131,35 @@ a:hover {
     right: 0;
     bottom: 0;
     background-image: url('../assets/images/headers/header_bg.png');
-    background-size: 100% auto; /* Full width, height auto */
-    background-repeat: no-repeat;
+    background-size: 300px auto; /* Smaller tiles - more zoomed out */
+    background-repeat: repeat; /* Fill with repetition */
     background-position: center center;
     opacity: 0.5; /* Much more visible */
     z-index: 1;
     pointer-events: none;
+    filter: blur(2px); /* Blur to hide seams/borders */
 }
 
 /* Specific header backgrounds for each page */
 .hero-section.contact-hero .hero-background {
     background-image: url('../assets/images/headers/contact_header_bg.png');
+    background-size: 300px auto; /* Smaller tiles - more zoomed out */
+    background-repeat: repeat; /* Fill with repetition */
+    filter: blur(2px); /* Blur to hide seams/borders */
 }
 
 .hero-section.feedback-hero .hero-background {
     background-image: url('../assets/images/headers/feedback_header_bg.png');
+    background-size: 300px auto; /* Smaller tiles - more zoomed out */
+    background-repeat: repeat; /* Fill with repetition */
+    filter: blur(2px); /* Blur to hide seams/borders */
 }
 
 .hero-section.polls-hero .hero-background {
     background-image: url('../assets/images/headers/polls_header_bg.png');
+    background-size: 300px auto; /* Smaller tiles - more zoomed out */
+    background-repeat: repeat; /* Fill with repetition */
+    filter: blur(2px); /* Blur to hide seams/borders */
 }
 
 /* Dark overlay removed - not needed */
@@ -1193,7 +1203,7 @@ a:hover {
 
     .hero-gallery-slideshow .slide {
         background-position: center center !important;
-        background-size: contain !important; /* Show full image without cropping */
+        background-size: cover !important; /* Fill the container without black bars */
         background-repeat: no-repeat !important;
     }
 }
