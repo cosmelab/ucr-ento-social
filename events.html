@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - UCR Entomology Social Committee</title>
+    <meta name="description" content="Upcoming and past events from the UCR Entomology Social Committee">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9ZFHT9P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N8K9ZFHT9P');
+    </script>
+
+    <style>
+        /* Timeline styles */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            opacity: 0.3;
+        }
+
+        .event-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .event-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .event-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .event-content {
+            width: 45%;
+            background: rgba(13, 13, 13, 0.6);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .event-content:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .event-date-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.6);
+            z-index: 10;
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(74, 144, 226, 0.2);
+        }
+
+        .event-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .event-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .event-location {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .event-description {
+            color: var(--text-card);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(255, 201, 71, 0.2));
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .event-badge.upcoming {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), rgba(0, 206, 209, 0.2));
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .event-badge.past {
+            background: linear-gradient(135deg, rgba(123, 157, 184, 0.2), rgba(123, 157, 184, 0.1));
+            border-color: #7B9DB8;
+            color: #7B9DB8;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+
+            .event-item,
+            .event-item:nth-child(even) {
+                flex-direction: row;
+                padding-left: 50px;
+            }
+
+            .event-content {
+                width: 100%;
+            }
+
+            .event-date-marker {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="theme-custom-blue">
+    <!-- Header/Hero Section -->
+    <header class="hero-section">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="assets/images/icons/logo.png" alt="Logo" class="nav-brand-logo">
+                        <span>Social Committee</span>
+                    </a>
+                    <span class="established">Established on September 2025</span>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Events</h1>
+            <p class="hero-mission">Join us for coffee hours, social gatherings, and community events</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section" style="padding: 4rem 0;">
+            <div class="container">
+                <!-- Intro Card -->
+                <div class="welcome-card" style="margin-bottom: 4rem; text-align: center;">
+                    <h2>Our Events Timeline</h2>
+                    <p>
+                        Explore upcoming and past events organized by the Social Committee. From coffee hours to seasonal celebrations,
+                        we bring the department together through shared experiences and good times.
+                    </p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+
+                    <!-- Event 1: Halloween Coffee Hour (Upcoming) - MOST RECENT AT TOP -->
+                    <div class="event-item">
+                        <div class="event-content">
+                            <span class="event-badge upcoming">Upcoming Event</span>
+                            <img src="assets/images/events/Mauck_Lab_Coffee_Hour_original.png" alt="Spooktacular Coffee Hour" class="event-image">
+                            <h3 class="event-title">Spooktacular Coffee Hour</h3>
+                            <p class="event-date">Thursday, October 31, 2025 | 9:30 AM - 10:30 AM</p>
+                            <p class="event-location">ENTM Courtyard</p>
+                            <p class="event-description">
+                                Join us for our first "Spooktacular" Coffee Hour hosted by Mauck Lab! Enjoy coffee, treats, and good company
+                                as we celebrate Halloween together. Costumes are highly encouraged — show off your spooky, silly, or creative side!
+                            </p>
+                            <p style="color: var(--accent); font-weight: 600; margin-bottom: 1rem;">
+                                Hosted by <a href="https://maucklab.ucr.edu" target="_blank" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">Mauck Lab</a>
+                            </p>
+                            <a href="coffee-hour-halloween.html" class="btn" style="width: 100%; text-align: center; display: inline-block; margin-top: 1rem; background: linear-gradient(135deg, #FF8C00, #FFC947); color: #000; font-weight: bold;">
+                                🎃 View Full Event Page
+                            </a>
+                        </div>
+                        <div class="event-date-marker">🎃</div>
+                    </div>
+
+                    <!-- Placeholder for future events -->
+                    <div class="event-item">
+                        <div class="event-content" style="text-align: center; border-style: dashed; opacity: 0.7;">
+                            <h3 class="event-title" style="color: var(--text-secondary);">More Events Coming Soon!</h3>
+                            <p class="event-description">
+                                We're planning exciting events based on your poll feedback. Check back soon for updates on coffee hours,
+                                social gatherings, and seasonal celebrations.
+                            </p>
+                            <p style="color: var(--text-secondary); font-size: 3rem; margin: 1rem 0;">🐛</p>
+                        </div>
+                        <div class="event-date-marker" style="background: rgba(74, 144, 226, 0.3);">?</div>
+                    </div>
+
+                </div>
+
+                <!-- Call to Action -->
+                <div class="phase-card" style="max-width: 600px; margin: 4rem auto; text-align: center;">
+                    <h3>Have Event Ideas?</h3>
+                    <p style="margin: 1rem 0 1.5rem 0;">
+                        We'd love to hear your suggestions for future events! Share your ideas through our feedback form
+                        or by completing the Events & Activities poll.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="feedback.html" class="btn">
+                            <span class="insect-emoji">💬</span> Submit Feedback
+                        </a>
+                        <a href="poll-events.html" class="btn" style="background: var(--accent); color: #000;">
+                            <span class="insect-emoji">📊</span> Take Events Poll
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-background"></div>
+        <div class="footer-content">
+            <!-- Visitor Counter -->
+            <div id="visitor-counter-footer"></div>
+            <div class="footer-logos">
+                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
+                </a>
+                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
+                </a>
+            </div>
+            <p>&copy; 2025 UCR Entomology Social Committee</p>
+            <p>All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+    <!-- Visitor Counter Widget -->
+    <link rel="stylesheet" href="css/visitor-widget.css">
+    <script src="js/visitor-counter.js"></script>
+</body>
+</html>

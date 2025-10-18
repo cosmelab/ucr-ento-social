@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//UCR Entomology Social Committee//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Spooktacular Coffee Hour
+X-WR-TIMEZONE:America/Los_Angeles
+BEGIN:VEVENT
+DTSTART:20251031T163000Z
+DTEND:20251031T173000Z
+DTSTAMP:20251017T154500Z
+UID:spooktacular-coffee-hour-2025@ucr-ento-social
+CREATED:20251017T154500Z
+DESCRIPTION:Join us for our first "Spooktacular" Coffee Hour hosted by Mauck Lab! Come enjoy coffee\, treats\, and good company as we celebrate Halloween together. Costumes are highly encouraged — show off your spooky\, silly\, or creative side!\n\nHosted by: Mauck Lab (https://maucklab.ucr.edu)\n\nFor more information\, visit: https://cosmelab.github.io/ucr-ento-social/coffee-hour-halloween.html
+LAST-MODIFIED:20251017T154500Z
+LOCATION:ENTM Courtyard\, Department of Entomology\, UC Riverside
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:🎃 Spooktacular Coffee Hour - Social Committee
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: Spooktacular Coffee Hour starts in 1 hour!
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

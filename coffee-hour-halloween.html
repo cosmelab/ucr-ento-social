@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spooktacular Coffee Hour - Halloween 2025</title>
+    <meta name="description" content="Join us for our first Spooktacular Coffee Hour on October 31st, hosted by Mauck Lab">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9ZFHT9P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N8K9ZFHT9P');
+    </script>
+
+    <style>
+        /* SPOOKY HALLOWEEN COLOR SCHEME */
+        :root {
+            --halloween-orange: #FF6B00;
+            --halloween-purple: #6B2C91;
+            --halloween-green: #39FF14;
+            --halloween-yellow: #FFD700;
+            --halloween-blood: #8B0000;
+            --halloween-dark: #0a0a0a;
+        }
+
+        body {
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0a0f 50%, #0a0a0a 100%) !important;
+        }
+
+        .event-hero {
+            background: linear-gradient(135deg, rgba(107, 44, 145, 0.3), rgba(255, 107, 0, 0.3)),
+                        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                        url('assets/images/events/Mauck_Lab_Coffee_Hour_gray.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(255, 107, 0, 0.3);
+        }
+
+        /* Animated gradient background overlay */
+        .event-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 300%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(107, 44, 145, 0.2) 25%,
+                transparent 50%,
+                rgba(255, 107, 0, 0.2) 75%,
+                transparent 100%);
+            animation: shimmer 8s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(33.333%); }
+        }
+
+        /* Spooky floating animations */
+        .floating-spooky {
+            position: absolute;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            opacity: 0.85;
+            background: transparent !important;
+            mix-blend-mode: normal;
+        }
+
+        /* Ensure no white backgrounds on images */
+        .floating-spooky img {
+            background: transparent !important;
+        }
+
+        @keyframes float-left-right {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.5)); }
+            25% { transform: translate(30px, -20px) rotate(5deg); filter: drop-shadow(0 0 15px rgba(107, 44, 145, 0.6)); }
+            50% { transform: translate(60px, 0) rotate(-5deg); filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.7)); }
+            75% { transform: translate(30px, 20px) rotate(3deg); filter: drop-shadow(0 0 15px rgba(107, 44, 145, 0.6)); }
+        }
+
+        @keyframes float-diagonal {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(-40px, -30px) rotate(-8deg) scale(1.1); }
+            50% { transform: translate(-20px, 10px) rotate(8deg) scale(0.9); }
+            75% { transform: translate(-60px, -10px) rotate(-4deg) scale(1.05); }
+        }
+
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
+            50% { transform: translateY(-40px) scale(1.1); filter: brightness(1.3) drop-shadow(0 0 20px rgba(57, 255, 20, 0.8)); }
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg) scale(1.05); }
+            50% { transform: rotate(0deg) scale(1); }
+            75% { transform: rotate(-15deg) scale(1.05); }
+        }
+
+        @keyframes fade-pulse {
+            0%, 100% { opacity: 0.6; filter: brightness(1); }
+            50% { opacity: 0.95; filter: brightness(1.4) drop-shadow(0 0 15px rgba(57, 255, 20, 0.9)); }
+        }
+
+        @keyframes spooky-shake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            10% { transform: translateX(-5px) rotate(-2deg); }
+            20% { transform: translateX(5px) rotate(2deg); }
+            30% { transform: translateX(-5px) rotate(-2deg); }
+            40% { transform: translateX(5px) rotate(2deg); }
+            50% { transform: translateX(0) rotate(0deg); }
+        }
+
+        /* Spooky element positioning - ready for transparent PNGs */
+        .spooky-bat-1 {
+            top: 10%;
+            left: 5%;
+            width: 80px;
+            animation: float-left-right 8s ease-in-out infinite;
+        }
+
+        .spooky-bat-2 {
+            top: 15%;
+            right: 8%;
+            width: 60px;
+            animation: float-diagonal 10s ease-in-out infinite;
+        }
+
+        .spooky-ghost-1 {
+            top: 40%;
+            left: 10%;
+            width: 70px;
+            animation: bounce-slow 6s ease-in-out infinite, fade-pulse 3s ease-in-out infinite;
+        }
+
+        .spooky-ghost-2 {
+            top: 50%;
+            right: 12%;
+            width: 65px;
+            animation: float-left-right 9s ease-in-out infinite reverse, fade-pulse 4s ease-in-out infinite;
+        }
+
+        .spooky-pumpkin {
+            bottom: 10%;
+            left: 15%;
+            width: 90px;
+            animation: swing 4s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        .spooky-web {
+            top: 0;
+            right: 0;
+            width: 150px;
+            opacity: 0.4;
+        }
+
+        .spooky-cat {
+            bottom: 5%;
+            right: 10%;
+            width: 80px;
+            animation: swing 5s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        .spooky-bird {
+            top: 20%;
+            left: 15%;
+            width: 60px;
+            animation: float-diagonal 12s ease-in-out infinite reverse;
+        }
+
+        /* Hide spooky elements if images not loaded yet */
+        .floating-spooky[src=""], .floating-spooky:not([src]) {
+            display: none;
+        }
+
+        .event-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .detail-card {
+            background: linear-gradient(135deg, rgba(107, 44, 145, 0.15), rgba(10, 10, 10, 0.6));
+            border: 0.5px solid rgba(74, 144, 226, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(107, 44, 145, 0.3),
+                        0 0 40px rgba(255, 107, 0, 0.2);
+        }
+
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+            animation: rotate-glow 10s linear infinite;
+        }
+
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .detail-card:hover {
+            border-color: var(--halloween-purple);
+            box-shadow: 0 0 30px rgba(107, 44, 145, 0.8),
+                        0 0 50px rgba(255, 107, 0, 0.6),
+                        0 0 70px rgba(255, 215, 0, 0.4);
+            transform: translateY(-10px) scale(1.05);
+            animation: spooky-shake 0.5s ease-in-out;
+        }
+
+        .detail-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: bounce-slow 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+        }
+
+        .detail-title {
+            color: var(--halloween-orange);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(107, 44, 145, 0.8),
+                         0 0 20px rgba(255, 107, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-info {
+            color: var(--text-card);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flyer-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .flyer-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 3px solid rgba(255, 140, 0, 0.3);
+            box-shadow: 0 8px 40px rgba(255, 140, 0, 0.3);
+        }
+
+        .sponsor-section {
+            background: linear-gradient(135deg, rgba(255, 201, 71, 0.1), rgba(255, 140, 0, 0.1));
+            border: 2px solid rgba(255, 201, 71, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .countdown-timer {
+            background: transparent;
+            border: none;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-timer h2 {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 30px rgba(107, 44, 145, 1),
+                         0 0 50px rgba(107, 44, 145, 0.8),
+                         0 0 70px rgba(107, 44, 145, 0.6);
+            color: var(--halloween-orange);
+        }
+
+        .countdown-timer p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-timer .btn {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--halloween-orange), var(--halloween-purple)) !important;
+            border: 0.5px solid rgba(255, 215, 0, 0.5);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 0 20px rgba(107, 44, 145, 0.4),
+                        0 0 40px rgba(255, 107, 0, 0.3);
+        }
+
+        .countdown-timer .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(107, 44, 145, 0.8),
+                        0 0 50px rgba(255, 107, 0, 0.6),
+                        0 0 70px rgba(255, 215, 0, 0.4);
+            animation: spooky-shake 0.5s ease-in-out;
+            border-color: var(--halloween-yellow);
+        }
+    </style>
+</head>
+<body class="theme-custom-blue">
+    <!-- Header/Hero Section -->
+    <header class="hero-section event-hero">
+        <!-- Floating spooky elements -->
+        <img src="assets/images/events/animations/bat_1.png" alt="" class="floating-spooky spooky-bat-1">
+        <img src="assets/images/events/animations/bat_1.png" alt="" class="floating-spooky spooky-bat-2">
+        <img src="assets/images/events/animations/ghost_1.png" alt="" class="floating-spooky spooky-ghost-1">
+        <img src="assets/images/events/animations/gohst_2.png" alt="" class="floating-spooky spooky-ghost-2">
+        <img src="assets/images/events/animations/espantalho.png" alt="" class="floating-spooky spooky-pumpkin">
+        <img src="assets/images/events/animations/spider_web.png" alt="" class="floating-spooky spooky-web">
+        <img src="assets/images/events/animations/cat_1.png" alt="" class="floating-spooky spooky-cat">
+        <img src="assets/images/events/animations/bird_1.png" alt="" class="floating-spooky spooky-bird">
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="assets/images/icons/logo.png" alt="Logo" class="nav-brand-logo">
+                        <span>Social Committee</span>
+                    </a>
+                    <span class="established">Established on September 2025</span>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-content" style="z-index: 5;">
+            <h1 class="hero-title" style="font-size: 3.5rem;
+                color: var(--halloween-orange);
+                text-shadow: 0 0 20px rgba(255, 107, 0, 1),
+                             0 0 40px rgba(107, 44, 145, 0.8),
+                             0 4px 20px rgba(0, 0, 0, 0.8);
+                animation: pulse-glow 2s ease-in-out infinite;
+                background: none;
+                padding: 0;
+                border: none;">
+                🎃 Spooktacular Coffee Hour 🎃
+            </h1>
+            <p class="hero-mission" style="font-size: 1.5rem;
+                color: var(--halloween-yellow);
+                text-shadow: 0 0 15px rgba(255, 215, 0, 0.9),
+                             0 2px 10px rgba(0, 0, 0, 0.8);
+                font-weight: 600;">
+                Our First Social Committee Event!
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section" style="padding: 4rem 0;">
+            <div class="container" style="max-width: 1000px;">
+
+                <!-- Countdown/Status Banner -->
+                <div class="countdown-timer">
+                    <h2 style="color: var(--halloween-orange); margin-bottom: 1rem; font-size: 2rem;">📅 Mark Your Calendar!</h2>
+                    <p id="countdown-text" style="color: var(--text-card); font-size: 1.2rem; margin: 0 0 1.5rem 0;">
+                        Join us in <strong id="countdown-days" style="color: var(--halloween-yellow);">calculating...</strong> for a frightfully fun time!
+                    </p>
+                    <a href="assets/spooktacular-coffee-hour.ics" download class="btn" style="display: inline-block;">
+                        <span class="insect-emoji">📥</span> Add to Google Calendar
+                    </a>
+                </div>
+
+                <script>
+                    // Dynamic countdown calculator
+                    function updateCountdown() {
+                        const eventDate = new Date('2025-10-31T09:30:00');
+                        const now = new Date();
+                        const diffTime = eventDate - now;
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                        const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+
+                        const countdownElement = document.getElementById('countdown-days');
+                        const countdownText = document.getElementById('countdown-text');
+
+                        if (diffTime < 0) {
+                            countdownText.innerHTML = 'This event has passed. Thanks to everyone who attended! 🎃';
+                        } else if (diffDays === 0) {
+                            countdownText.innerHTML = 'Join us <strong style="color: var(--halloween-yellow);">TODAY</strong> for a frightfully fun time!';
+                        } else if (diffDays === 1) {
+                            countdownText.innerHTML = 'Join us <strong style="color: var(--halloween-yellow);">TOMORROW</strong> for a frightfully fun time!';
+                        } else if (diffDays <= 7) {
+                            countdownElement.textContent = `in ${diffDays} days`;
+                        } else if (diffDays <= 14) {
+                            const weeks = Math.floor(diffDays / 7);
+                            const days = diffDays % 7;
+                            if (days === 0) {
+                                countdownElement.textContent = `in ${weeks} ${weeks === 1 ? 'week' : 'weeks'}`;
+                            } else {
+                                countdownElement.textContent = `in ${weeks} ${weeks === 1 ? 'week' : 'weeks'} and ${days} ${days === 1 ? 'day' : 'days'}`;
+                            }
+                        } else {
+                            countdownElement.textContent = `in ${diffDays} days`;
+                        }
+                    }
+
+                    // Update on load
+                    updateCountdown();
+                    // Update every hour
+                    setInterval(updateCountdown, 3600000);
+                </script>
+
+                <!-- Event Details Grid -->
+                <div class="event-details-grid">
+                    <div class="detail-card">
+                        <div class="detail-icon">📅</div>
+                        <h3 class="detail-title">Date & Time</h3>
+                        <p class="detail-info">
+                            Thursday, October 31, 2025<br>
+                            9:30 AM - 10:30 AM
+                        </p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-icon">📍</div>
+                        <h3 class="detail-title">Location</h3>
+                        <p class="detail-info">
+                            ENTM Courtyard<br>
+                            Department of Entomology
+                        </p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-icon">🎃</div>
+                        <h3 class="detail-title">Dress Code</h3>
+                        <p class="detail-info">
+                            Costumes Encouraged!<br>
+                            Show off your creativity
+                        </p>
+                    </div>
+                </div>
+
+                <!-- About the Event -->
+                <div class="welcome-card" style="margin: 3rem 0;">
+                    <h2 style="color: var(--primary);">About This Event</h2>
+                    <p style="line-height: 1.8; font-size: 1.1rem;">
+                        Come enjoy coffee, treats, and good company as we celebrate Halloween together! This is our very first
+                        Social Committee event, and we're kicking things off with a spooky celebration. Whether you dress up in a
+                        costume or come as you are, all are welcome to join us for some frightfully fun festivities.
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.1rem; margin-top: 1rem;">
+                        This coffee hour is a great opportunity to:
+                    </p>
+                    <ul style="color: var(--text-card); line-height: 2; font-size: 1.05rem; margin-top: 1rem;">
+                        <li>Meet and connect with colleagues from across the department</li>
+                        <li>Take a break from research and enjoy some seasonal treats</li>
+                        <li>Show off your Halloween spirit with costumes (spooky, silly, or creative!)</li>
+                        <li>Support the Social Committee's mission to build community</li>
+                    </ul>
+                </div>
+
+                <!-- Event Flyer -->
+                <div class="flyer-container">
+                    <h2 style="color: var(--primary); margin-bottom: 2rem;">Event Flyer</h2>
+                    <img src="assets/images/events/Mauck_Lab_Coffee_Hour_gray.png"
+                         alt="Spooktacular Coffee Hour Flyer"
+                         class="flyer-image">
+                    <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem;">
+                        Feel free to download and share this flyer with your lab!
+                    </p>
+                </div>
+
+                <!-- Sponsor Recognition -->
+                <div class="sponsor-section">
+                    <h2 style="color: var(--accent); margin-bottom: 1rem;">Special Thanks to Our Sponsor</h2>
+                    <p style="color: var(--text-card); font-size: 1.2rem; line-height: 1.8;">
+                        This event is graciously hosted by the <a href="https://maucklab.ucr.edu" target="_blank"
+                        style="color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent); font-weight: bold;">Mauck Lab</a>!
+                    </p>
+                    <p style="color: var(--text-card); margin-top: 1rem; line-height: 1.6;">
+                        Thank you to Dr. Kerry Mauck and the entire Mauck Lab team for sponsoring our first Social Committee coffee hour.
+                        Your support helps bring our department community together!
+                    </p>
+                </div>
+
+                <!-- RSVP/Questions Section -->
+                <div class="phase-card" style="text-align: center; margin: 3rem 0;">
+                    <h3 style="color: var(--halloween-orange);">Questions or Want to Help?</h3>
+                    <p style="margin: 1.5rem 0; line-height: 1.8;">
+                        Have questions about the event or interested in helping out? We'd love to hear from you!
+                        Contact the Social Committee through our website.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="contact.html" class="btn">
+                            <span class="insect-emoji">📧</span> Contact Us
+                        </a>
+                        <a href="events.html" class="btn" style="background: linear-gradient(135deg, var(--halloween-orange), var(--halloween-purple)); color: #fff;">
+                            <span class="insect-emoji">📅</span> View All Events
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Back to Events -->
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="events.html" style="color: var(--primary); text-decoration: none; font-size: 1.1rem;">
+                        ← Back to Events Timeline
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-background"></div>
+        <div class="footer-content">
+            <!-- Visitor Counter -->
+            <div id="visitor-counter-footer"></div>
+            <div class="footer-logos">
+                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology" title="UCR Department of Entomology">
+                </a>
+                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside" title="UC Riverside">
+                </a>
+            </div>
+            <p>&copy; 2025 UCR Entomology Social Committee</p>
+            <p>All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+    <!-- Visitor Counter Widget -->
+    <link rel="stylesheet" href="css/visitor-widget.css">
+    <script src="js/visitor-counter.js"></script>
+</body>
+</html>
