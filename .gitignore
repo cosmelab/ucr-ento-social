@@ -61,8 +61,8 @@ polls/*_poll_responses.csv
 polls/*_analysis.txt
 polls/*_poll_summary.csv
 
-# Summary CSV files in root (these can be committed as they don't contain personal data)
-!*_poll_summary.csv
+# Summary CSV files in root directory - also contain personal/sensitive data
+*_poll_summary.csv
 
 # Poll analysis - old static charts (keep interactive HTML)
 polls/analysis_results/analysis_charts_*/

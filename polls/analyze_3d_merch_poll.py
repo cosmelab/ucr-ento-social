@@ -209,7 +209,7 @@ def create_visualizations(df, output_dir="analysis_charts_3d_merch"):
         print("  ✓ price_ranges.png")
         plt.close()
 
-def export_summary_csv(df, output_file="3d_merch_poll_summary.csv"):
+def export_summary_csv(df, output_file="polls/3d_merch_poll_summary.csv"):
     """Export summary statistics to CSV"""
     summaries = []
 

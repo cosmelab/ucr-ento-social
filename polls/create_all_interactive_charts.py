@@ -14,6 +14,109 @@ COLORS = ['#4A90E2', '#FFC947', '#90EE90', '#FF6B6B', '#9B59B6', '#1ABC9C', '#F3
 UCR_BLUE = '#003DA5'
 UCR_GOLD = '#FFC947'
 
+def wrap_label(text, max_length=20):
+    """Wrap long labels into multiple lines"""
+    if len(text) <= max_length:
+        return text
+
+    words = text.split()
+    lines = []
+    current_line = []
+    current_length = 0
+
+    for word in words:
+        if current_length + len(word) + 1 <= max_length:
+            current_line.append(word)
+            current_length += len(word) + 1
+        else:
+            if current_line:
+                lines.append(' '.join(current_line))
+            current_line = [word]
+            current_length = len(word)
+
+    if current_line:
+        lines.append(' '.join(current_line))
+
+    return '<br>'.join(lines)
+
+def shorten_labels(data):
+    """Shorten long labels for better chart readability"""
+    label_map = {
+        # Purchase Interest
+        "Yes, definitely": "Yes",
+        "Maybe, depends on design/price": "Maybe",
+        "No, not interested": "No",
+
+        # Coffee/Tea
+        "Espresso-based drinks (latte, cappuccino)": "Espresso drinks",
+        "cappuccino)": "Espresso drinks",  # Handle split case
+
+        # Food
+        "Pastries and baked goods": "Pastries",
+        "Cultural foods from different countries": "Cultural foods",
+        "Vegan/Vegetarian options": "Vegan/Vegetarian",
+        "Gluten-free options": "Gluten-free",
+
+        # Location
+        "Mix of both depending on weather": "Weather dependent",
+        "Building lobby/atrium": "Lobby/Atrium",
+        "Department conference room": "Conference room",
+        "Rotating between labs": "Rotating labs",
+
+        # Hosting
+        "Maybe, need to discuss with lab": "Maybe",
+        "Yes, occasionally": "Yes (occasionally)",
+        "Yes, regularly": "Yes (regularly)",
+
+        # Music
+        "No music, quiet conversation only": "No music",
+        "Cultural music from hosting lab": "Cultural music",
+
+        # Barriers
+        "Time constraints": "Time",
+        "Class conflicts": "Classes",
+        "Meeting conflicts": "Meetings",
+        "Research commitments": "Research",
+        "Family obligations": "Family",
+        "Social anxiety": "Anxiety",
+        "Transportation": "Transport",
+        "Time doesn't work": "Timing",
+        "Dietary restrictions not met": "Dietary needs",
+        "Location too far": "Location",
+
+        # Events - Availability
+        "Weekday lunch": "Lunch",
+        "Weekday afternoon": "Afternoon",
+        "Weekday evening": "Evening",
+        "Friday afternoon": "Fri afternoon",
+
+        # Design/Printing
+        "Realistic/Scientific": "Realistic",
+        "Cute/Stylized": "Cute",
+        "Mix of styles": "Mixed",
+        "No preference": "No pref",
+        "FDM/PETG": "PETG",
+        "FDM/PLA": "PLA",
+
+        # Colors
+        "Bright colors": "Bright",
+        "Natural colors": "Natural",
+        "Single color": "Single",
+
+        # Size
+        "Small (1-2 inches)": "Small",
+        "Medium (3-4 inches)": "Medium",
+        "Large (5+ inches)": "Large",
+    }
+
+    # Create new series with shortened labels
+    new_data = pd.Series(dtype='int64')
+    for label, value in data.items():
+        short_label = label_map.get(label, label)
+        new_data[short_label] = value
+
+    return new_data
+
 def split_multiselect(df, column):
     """Split comma-separated values and count"""
     if column not in df.columns:
@@ -60,6 +163,9 @@ def create_interactive_bar(data, title, output_path, orientation='h', consolidat
         print(f"  ⚠ Skipping {output_path.name} - no data")
         return
 
+    # Shorten labels for better readability
+    data = shorten_labels(data)
+
     # Consolidate small categories if requested
     if consolidate:
         data = consolidate_small_categories(data)
@@ -67,11 +173,15 @@ def create_interactive_bar(data, title, output_path, orientation='h', consolidat
     total = data.sum()
     percentages = (data.values / total * 100).round(1)
 
+    # Wrap long labels for better display
+    original_labels = data.index.tolist()
+    wrapped_labels = [wrap_label(str(label)) for label in original_labels]
+
     # Use different colors for each bar!
     bar_colors = [COLORS[i % len(COLORS)] for i in range(len(data))]
 
     hover_text = [f'<b>{item}</b><br>Count: {count}<br>Percentage: {pct:.1f}%'
-                  for item, count, pct in zip(data.index, data.values, percentages)]
+                  for item, count, pct in zip(original_labels, data.values, percentages)]
 
     # Smart label positioning: inside for large bars, outside for small ones
     max_value = data.values.max()
@@ -79,7 +189,7 @@ def create_interactive_bar(data, title, output_path, orientation='h', consolidat
 
     if orientation == 'h':
         fig = go.Figure(go.Bar(
-            y=data.index,
+            y=wrapped_labels,
             x=data.values,
             orientation='h',
             text=[f'<b>{count} ({pct:.1f}%)</b>' for count, pct in zip(data.values, percentages)],
@@ -94,7 +204,7 @@ def create_interactive_bar(data, title, output_path, orientation='h', consolidat
         yaxis_title = ''
     else:
         fig = go.Figure(go.Bar(
-            x=data.index,
+            x=wrapped_labels,
             y=data.values,
             text=[f'<b>{count}<br>({pct:.1f}%)</b>' for count, pct in zip(data.values, percentages)],
             textposition=text_positions,
@@ -147,6 +257,9 @@ def create_interactive_donut(data, title, output_path, legend_position='right', 
     if len(data) == 0 or data.sum() == 0:
         print(f"  ⚠ Skipping {output_path.name} - no data")
         return
+
+    # Shorten labels for better readability
+    data = shorten_labels(data)
 
     # Consolidate small categories if requested
     if consolidate:
@@ -224,6 +337,12 @@ def analyze_coffee_hour_poll():
     print(f"\nTotal responses: {len(df)}")
     print(f"Output directory: {output_dir}\n")
 
+    # 0. Role Demographics - Donut
+    if 'Role' in df.columns:
+        role = df['Role'].value_counts()
+        create_interactive_donut(role, 'Respondent Demographics',
+                                output_dir / 'role.html')
+
     # 1. Preferred Days
     days = split_multiselect(df, 'Preferred Days')
     weekday_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -231,9 +350,13 @@ def analyze_coffee_hour_poll():
     create_interactive_bar(days, 'Preferred Days for Coffee Hour',
                           output_dir / 'preferred_days.html')
 
-    # 2. Start Times
+    # 2. Start Times - sorted chronologically
     times = split_multiselect(df, 'Start Time')
-    create_interactive_bar(times.head(10), 'Top 10 Preferred Start Times',
+    # Sort by time order instead of frequency
+    time_order = ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+                  '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM']
+    times = times.reindex([t for t in time_order if t in times.index])
+    create_interactive_bar(times, 'Preferred Start Times',
                           output_dir / 'start_times.html')
 
     # 3. Frequency - Donut

@@ -226,7 +226,7 @@ def create_visualizations(df, output_dir="analysis_charts_events"):
         print("  ✓ participation_level.png")
     plt.close()
 
-def export_summary_csv(df, output_file="events_poll_summary.csv"):
+def export_summary_csv(df, output_file="polls/events_poll_summary.csv"):
     """Export summary statistics to CSV"""
     summaries = []
 

@@ -24,22 +24,16 @@ Read this file first before any action.
 12. Never create documentation files (.md) unless specifically asked
 13. Keep responses concise and to the point
 14. Only use emojis if explicitly requested
-
-## Python Environment
-
-15. NEVER install packages using pip, conda, or any package manager
-16. NEVER create or modify conda environments
-17. Python is installed via Homebrew at: /opt/homebrew/Caskroom/miniforge/base/bin/python3
-18. Use ONLY the packages that are already installed
-19. Check what's installed with: /opt/homebrew/Caskroom/miniforge/base/bin/python3 -m pip list
-20. If a package is missing, ask the user - DO NOT attempt to install it
+15. Use lowercase for all .md files except README.md (which should be uppercase)
+16. Be humble and straightforward in documentation - avoid buzzwords like "modern", "cutting-edge", "state-of-the-art"
+17. Keep descriptions simple and factual without overselling features
 
 ## Git/Repository Specific
 
-15. If git operations are needed, explain the exact commands you will run and their purpose
-16. Never force push without explicit permission
-17. Never modify .gitignore or other git configuration files without permission
-18. Always verify paths and configurations before making changes
+18. If git operations are needed, explain the exact commands you will run and their purpose
+19. Never force push without explicit permission
+20. Never modify .gitignore or other git configuration files without permission
+21. Always verify paths and configurations before making changes
 
 ## Failure to Follow Rules
 

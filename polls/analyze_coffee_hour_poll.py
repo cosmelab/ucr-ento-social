@@ -250,7 +250,7 @@ def create_visualizations(df, output_dir="analysis_charts_coffee_hour"):
         print("  ✓ barriers.png")
     plt.close()
 
-def export_summary_csv(df, output_file="coffee_hour_poll_summary.csv"):
+def export_summary_csv(df, output_file="polls/coffee_hour_poll_summary.csv"):
     """Export summary statistics to CSV"""
     summaries = []
 
