@@ -54,11 +54,22 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Poll development files
-polls/*.py
-polls/*.csv
-polls/*.js
-polls/*.md
+# Poll sensitive data - DO NOT COMMIT
+polls/credentials.json
+polls/token_sheets.json
+polls/*_poll_responses.csv
+polls/*_analysis.txt
+polls/*_poll_summary.csv
+
+# Summary CSV files in root (these can be committed as they don't contain personal data)
+!*_poll_summary.csv
+
+# Poll analysis - old static charts (keep interactive HTML)
+polls/analysis_results/analysis_charts_*/
 
 # Email templates directory
-email-templates/
+email-templates/polls/token_sheets.json
+
+# Keep these poll files (negating the ignores above):
+!polls/*.py
+!polls/analysis_results/interactive_charts_*/*.html

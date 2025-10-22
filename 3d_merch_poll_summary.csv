@@ -1,0 +1,41 @@
+Category,Item,Count,Percentage
+Keychain Products,Fridge magnets,13,65.0%
+Keychain Products,Insect keychains,11,55.0%
+Keychain Products,Lapel pins,7,35.0%
+Decorative Products,Earrings,9,45.0%
+Decorative Products,Desk ornaments,7,35.0%
+Decorative Products,Hanging ornaments,7,35.0%
+Functional Products,Phone stands,7,35.0%
+Functional Products,Bookmarks,5,25.0%
+Functional Products,Pencil toppers,2,10.0%
+Favorite Insects,Praying mantis,10,50.0%
+Favorite Insects,Beetles,10,50.0%
+Favorite Insects,Dragonflies,9,45.0%
+Favorite Insects,Ants,6,30.0%
+Favorite Insects,Butterflies,5,25.0%
+Favorite Insects,Cicadas,5,25.0%
+Favorite Insects,Honeybees,4,20.0%
+Favorite Insects,Moths,4,20.0%
+Favorite Insects,Ladybugs,3,15.0%
+Purchase Interest,"Maybe, depends on design/price",15,75.0%
+Purchase Interest,"Yes, definitely",4,20.0%
+Purchase Interest,"No, not interested",1,5.0%
+Design Style,Mix of styles,11,55.0%
+Design Style,Realistic/Scientific,6,30.0%
+Design Style,Cute/Stylized,3,15.0%
+Printing Method,No preference,15,75.0%
+Printing Method,Resin,3,15.0%
+Printing Method,FDM/PETG,1,5.0%
+Printing Method,FDM/PLA,1,5.0%
+Color Preference,No preference,11,55.0%
+Color Preference,Bright colors,5,25.0%
+Color Preference,Natural colors,3,15.0%
+Color Preference,Single color,1,5.0%
+Price Small Items,$3-5,9,45.0%
+Price Small Items,$5-8,6,30.0%
+Price Small Items,$8-12,4,20.0%
+Price Small Items,$12+,1,5.0%
+Price Large Items,$10-15,11,55.0%
+Price Large Items,$15-20,5,25.0%
+Price Large Items,$20-30,3,15.0%
+Price Large Items,$30+,1,5.0%

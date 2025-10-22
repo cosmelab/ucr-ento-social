@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Results - UCR Entomology Social Committee</title>
+    <meta name="description" content="Results from our department polls on coffee hours, social events, and 3D printed merchandise">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/social.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8K9ZFHT9P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N8K9ZFHT9P');
+    </script>
+
+    <style>
+        .results-hero {
+            background: linear-gradient(135deg, #003DA5 0%, #4A90E2 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .results-summary {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--primary);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem auto;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(74, 144, 226, 0.4);
+            border-color: var(--primary);
+        }
+
+        .chart-container iframe {
+            width: 100%;
+            height: 650px;
+            border: none;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        .poll-section {
+            margin: 4rem 0;
+        }
+
+        .decision-box {
+            background: linear-gradient(135deg, rgba(255, 201, 71, 0.15), rgba(74, 144, 226, 0.15));
+            border-left: 4px solid var(--primary);
+            color: var(--text-card);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+        }
+
+        .decision-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .decision-item {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .decision-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: linear-gradient(135deg, var(--bg-surface), #252525);
+            padding: 0.5rem 1rem;
+            color: var(--primary);
+            border: 1px solid rgba(74, 144, 226, 0.4);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            min-width: 160px;
+            height: 36px;
+        }
+
+        .tab::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
+            transition: left 0.6s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .tab:hover::after {
+            left: 100%;
+        }
+
+        .tab .emoji {
+            font-size: 1em;
+            display: inline-block;
+            filter: sepia(1) saturate(5) hue-rotate(180deg) brightness(0.7);
+            transition: transform 0.5s ease, filter 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab:hover {
+            background: linear-gradient(135deg, var(--primary), #6BA3F5);
+            color: var(--text-primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(74, 144, 226, 0.6), 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(107, 163, 245, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .tab:hover .emoji {
+            transform: rotate(360deg);
+            filter: brightness(1) grayscale(1) invert(1);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, var(--primary), #4A90E2);
+            color: var(--text-primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab.active .emoji {
+            filter: brightness(1) grayscale(1) invert(1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Sticky tabs */
+        .tabs-container {
+            position: sticky;
+            top: 70px;
+            background: var(--bg-dark);
+            z-index: 100;
+            padding: 1rem 0;
+            margin: 2rem 0 0 0;
+            border-bottom: 2px solid rgba(74, 144, 226, 0.3);
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 61, 165, 0.4);
+            transition: var(--transition);
+            z-index: 1000;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 61, 165, 0.6);
+        }
+
+        .scroll-to-top.visible {
+            display: flex;
+        }
+
+        /* View all results button */
+        .view-all-btn {
+            background: linear-gradient(135deg, var(--accent), #FFD700);
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 1rem auto;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 201, 71, 0.5);
+        }
+
+        /* Summary cards in tabs */
+        .tab-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tab-summary .stat-card {
+            background: linear-gradient(135deg, rgba(0, 61, 165, 0.1), rgba(74, 144, 226, 0.1));
+        }
+
+        @media (max-width: 768px) {
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-container {
+                padding: 0.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .chart-container iframe {
+                height: 450px;
+            }
+
+            .tabs-container {
+                top: 60px;
+            }
+
+            .tabs {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tab {
+                width: 100%;
+                justify-content: center;
+                padding: 1rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .tab .emoji {
+                font-size: 0.9em;
+            }
+
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .decision-box {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .decision-item {
+                font-size: 0.95rem;
+            }
+
+            .poll-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .action-buttons {
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+
+            .action-buttons .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chart-container {
+                padding: 0.25rem;
+                margin: 1rem 0;
+            }
+
+            .chart-container iframe {
+                height: 400px;
+            }
+
+            .tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+                min-width: auto;
+            }
+
+            .decision-box {
+                padding: 0.75rem;
+            }
+
+            .decision-item {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body class="theme-custom-blue">
+    <!-- Header -->
+    <header class="hero-section">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="assets/images/icons/logo.png" alt="Logo" class="nav-brand-logo">
+                        <span>Social Committee</span>
+                    </a>
+                    <span class="established">Established on September 2025</span>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="poll-results.html" class="active">Results</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Poll Results</h1>
+            <p class="hero-mission">Thank you for sharing your input!</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section">
+            <div class="container">
+                <!-- Tabs (Sticky) -->
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('coffee-hour')">
+                            <span class="emoji">☕</span>
+                            <span>Coffee Hours</span>
+                        </button>
+                        <button class="tab" onclick="showTab('events')">
+                            <span class="emoji">🎉</span>
+                            <span>Social Events</span>
+                        </button>
+                        <button class="tab" onclick="showTab('merch')">
+                            <span class="emoji">🦗</span>
+                            <span>3D Merchandise</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coffee Hour Results -->
+                <div id="coffee-hour" class="tab-content active">
+                    <div class="poll-section">
+                        <h2 class="section-title">Coffee Hour Poll Results</h2>
+                        <p class="section-subtitle">Based on 31 responses from faculty, students, and staff</p>
+
+                        <!-- Key Findings -->
+                        <div class="decision-box">
+                            <h3>📊 Key Findings</h3>
+                            <div class="decision-item">Day: <strong>Friday</strong> (61% preference)</div>
+                            <div class="decision-item">Time: <strong>10:00 AM</strong> (65% preference)</div>
+                            <div class="decision-item">Duration: <strong>1 hour</strong> (58% preference)</div>
+                            <div class="decision-item">Frequency: <strong>Weekly</strong> (55% preference)</div>
+                            <div class="decision-item">Location: <strong>Courtyard</strong> (weather permitting)</div>
+                        </div>
+
+                        <!-- Charts -->
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/preferred_days.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/start_times.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/frequency.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/duration.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/food.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/coffee.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/tea.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/location.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_coffee_hour/barriers.html"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Poll Results -->
+                <div id="events" class="tab-content">
+                    <div class="poll-section">
+                        <h2 class="section-title">Social Events Poll Results</h2>
+                        <p class="section-subtitle">Based on 29 responses about preferred social activities</p>
+
+                        <!-- Key Findings -->
+                        <div class="decision-box">
+                            <h3>📊 Key Findings</h3>
+                            <div class="decision-item">76% want to attend social events</div>
+                            <div class="decision-item">52% willing to help organize</div>
+                            <div class="decision-item">Most requested: Game nights, movie screenings, cultural celebrations</div>
+                            <div class="decision-item">Monthly frequency preferred by majority</div>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/on_campus_social.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/games_entertainment.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/seasonal.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/outdoor.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/day_trips.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/entertainment_outings.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/frequency.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/availability_times.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/barriers.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/budget.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_events/participation.html"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Merch Poll Results -->
+                <div id="merch" class="tab-content">
+                    <div class="poll-section">
+                        <h2 class="section-title">3D Printed Merchandise Poll Results</h2>
+                        <p class="section-subtitle">Based on 20 responses about merchandise preferences</p>
+
+                        <!-- Key Findings -->
+                        <div class="decision-box">
+                            <h3>📊 Key Findings</h3>
+                            <div class="decision-item">Top insects: Praying mantis & Beetles (50% each)</div>
+                            <div class="decision-item">Also popular: Dragonflies (45%)</div>
+                            <div class="decision-item">Most requested: Fridge magnets (65%), Keychains (55%), Earrings (45%)</div>
+                            <div class="decision-item">Price range: $3-5 for small items, $10-15 for large items</div>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/purchase_interest.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/keychain_products.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/decorative_products.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/functional_products.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/insects.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/design_style.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/printing_method.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/color_preference.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/size_preference.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/price_small.html"></iframe>
+                        </div>
+
+                        <div class="chart-container">
+                            <iframe src="polls/analysis_results/interactive_charts_3d_merch/price_large.html"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="results-summary" style="margin-top: 4rem;">
+                    <h2 style="color: var(--primary); margin-bottom: 1rem;">What's Next?</h2>
+                    <p style="margin-bottom: 1rem;">Based on your feedback, we're taking action:</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                            <strong>Coffee Hours:</strong> Starting Friday mornings at 10:00 AM in the Courtyard
+                        </li>
+                        <li style="margin: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                            <strong>Social Events:</strong> Planning game nights and cultural celebrations
+                        </li>
+                        <li style="margin: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
+                            <strong>3D Merch:</strong> Designing praying mantis and beetle keychains
+                        </li>
+                    </ul>
+                    <div class="action-buttons" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="events.html" class="btn">View Upcoming Events</a>
+                        <a href="feedback.html" class="btn">Share More Feedback</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-background"></div>
+        <div class="footer-content">
+            <!-- Visitor Counter -->
+            <div id="visitor-counter-footer"></div>
+            <div class="footer-logos">
+                <a href="https://entomology.ucr.edu/" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_entomology_logo.png" alt="UCR Department of Entomology">
+                </a>
+                <a href="https://www.ucr.edu" target="_blank" class="logo-link">
+                    <img src="assets/images/logos/UCR_Icon_WhtBG.png" alt="UC Riverside">
+                </a>
+            </div>
+            <p>&copy; 2025 UCR Entomology Social Committee</p>
+            <p>All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
+        ↑
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+    <!-- Visitor Counter Widget -->
+    <link rel="stylesheet" href="css/visitor-widget.css">
+    <script src="js/visitor-counter.js"></script>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Scroll to tabs
+            document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function viewAllResults() {
+            // Show all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('active'));
+
+            // Hide the tabs
+            document.querySelector('.tabs-container').style.display = 'none';
+
+            // Hide view all button
+            event.target.style.display = 'none';
+
+            // Scroll to first result
+            document.getElementById('coffee-hour').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
